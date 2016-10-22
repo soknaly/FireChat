@@ -11,6 +11,9 @@
 @interface FCChangePasswordTableViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem *saveBarButtonItem;
+@property (nonatomic, weak) IBOutlet UITextField *currentPasswordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic, weak) IBOutlet UITextField *confirmPasswordTextField;
 
 @end
 

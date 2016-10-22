@@ -15,5 +15,6 @@
 #import "UIViewController+FC.h"
 #import <Firebase.h>
 #import "FCAlertController.h"
+#import "NSString+FC.h"
 
 #endif /* Prefix_h */

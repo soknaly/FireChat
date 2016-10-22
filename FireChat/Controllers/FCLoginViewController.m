@@ -9,8 +9,11 @@
 #import "FCLoginViewController.h"
 #import "FCTextField.h"
 #import "FCRoundedButton.h"
+#import "FCTabBarViewController.h"
 
-@interface FCLoginViewController ()
+@interface FCLoginViewController ()<
+UITextFieldDelegate
+>
 
 @property (nonatomic, weak) IBOutlet FCTextField *usernameTextField;
 
@@ -28,6 +31,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [self setupView];
   [self registerKeyboardNotifications];
 }
 
@@ -45,6 +49,11 @@
   [self removeKeyboardNotification];
 }
 
+- (void)setupView {
+  self.usernameTextField.delegate = self;
+  self.passwordTextField.delegate = self;
+}
+
 - (void)registerKeyboardNotifications {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -54,8 +63,43 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (IBAction)loginButtonAction:(id)sender {
+#pragma mark - Validation
+
+- (void)validateLoginWithCompletion:(void(^)())completion {
+  NSString *message = nil;
+  if ([self.usernameTextField.text isEmpty]) {
+    message = @"Please input your email!";
+    [self.usernameTextField becomeFirstResponder];
+  } else {
+    if (![self.usernameTextField.text isValidEmail]) {
+        message = @"Please input valid email!";
+    }
+    [self.usernameTextField becomeFirstResponder];
+  }
   
+  if ([self.passwordTextField.text isEmpty]) {
+    message = @"Please input your password!";
+    [self.passwordTextField becomeFirstResponder];
+  }
+  if (message) {
+    [FCAlertController showErrorWithTitle:@"Login Failed"
+                                  message:message
+                         inViewController:self];
+
+  } else {
+    completion();
+  }
+}
+
+#pragma mark - Actions
+
+- (IBAction)loginButtonAction:(id)sender {
+  [self validateLoginWithCompletion:^{
+    //TODO: Login with Firebase here
+    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:tabBarController animated:YES completion:nil];
+  }];
 }
 
 - (IBAction)facebookButtonAction:(id)sender {
@@ -78,6 +122,21 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
   [self.view endEditing:YES];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+  if ([textField isEqual:self.usernameTextField]) {
+    [self.passwordTextField becomeFirstResponder];
+  } else {
+    if ([self.usernameTextField.text isEmpty]) {
+      [self.usernameTextField becomeFirstResponder];
+    } else {
+      [self loginButtonAction:self.loginButton];
+    }
+  }
+  return YES;
 }
 
 #pragma mark - Notifications
