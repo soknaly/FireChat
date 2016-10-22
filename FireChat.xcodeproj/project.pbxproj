@@ -7,25 +7,119 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D38E44A1DB36A9800A30E88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E4491DB36A9800A30E88 /* main.m */; };
+		5E7B8439D25B13BED8254AE9 /* Pods_FireChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5CC8B92A182F9627708111 /* Pods_FireChat.framework */; };
 		6D38E44D1DB36A9800A30E88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E44C1DB36A9800A30E88 /* AppDelegate.m */; };
-		6D38E4501DB36A9800A30E88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E44F1DB36A9800A30E88 /* ViewController.m */; };
-		6D38E4531DB36A9900A30E88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D38E4511DB36A9900A30E88 /* Main.storyboard */; };
 		6D38E4551DB36A9900A30E88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D38E4541DB36A9900A30E88 /* Assets.xcassets */; };
 		6D38E4581DB36A9900A30E88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D38E4561DB36A9900A30E88 /* LaunchScreen.storyboard */; };
+		6D38E4691DB36B5E00A30E88 /* FCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D38E4681DB36B5E00A30E88 /* FCHomeViewController.m */; };
+		6D38E46C1DB36DC500A30E88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D38E46B1DB36DC500A30E88 /* Main.storyboard */; };
+		6D3D636C1DBA280A00DBBB5C /* UIColor+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D636B1DBA280A00DBBB5C /* UIColor+FC.m */; };
+		6D3D636F1DBA2BD700DBBB5C /* FCRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D636E1DBA2BD700DBBB5C /* FCRoundedButton.m */; };
+		6D3D63721DBA2C7800DBBB5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D63711DBA2C7800DBBB5C /* main.m */; };
+		6D3D63771DBA3ECD00DBBB5C /* FCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */; };
+		6D8F4F311DBA84C700C44C5A /* FCSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */; };
+		6D8F4F341DBA850500C44C5A /* FCGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F331DBA850500C44C5A /* FCGroupTableViewCell.m */; };
+		6D8F4F371DBA862000C44C5A /* FCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F361DBA862000C44C5A /* FCGroup.m */; };
+		6D8F4F391DBA89EA00C44C5A /* FCSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8F4F381DBA89EA00C44C5A /* FCSettingHeaderView.xib */; };
+		6D8F4F3C1DBA9F6C00C44C5A /* FCAddChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F3B1DBA9F6C00C44C5A /* FCAddChatViewController.m */; };
+		6D98A3E61DBB288B00A3F147 /* FCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3E51DBB288B00A3F147 /* FCAlertController.m */; };
+		6D98A3E91DBB32AA00A3F147 /* FCChangePasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3E81DBB32AA00A3F147 /* FCChangePasswordTableViewController.m */; };
+		6D98A3EC1DBB369A00A3F147 /* FCEditProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3EB1DBB369A00A3F147 /* FCEditProfileTableViewController.m */; };
+		6D98A3EF1DBB3E5500A3F147 /* FCContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3EE1DBB3E5500A3F147 /* FCContactTableViewCell.m */; };
+		6D98A3F21DBB3E9C00A3F147 /* FCContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3F11DBB3E9C00A3F147 /* FCContactListViewController.m */; };
+		6D98A3F51DBB4CFC00A3F147 /* FCRegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3F41DBB4CFC00A3F147 /* FCRegisterTableViewController.m */; };
+		6D98A3FB1DBB583A00A3F147 /* NSString+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */; };
+		6DEE39231DBA4483004A7EFE /* AppDelegate+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */; };
+		6DEE39261DBA4B82004A7EFE /* FCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39251DBA4B82004A7EFE /* FCBaseViewController.m */; };
+		6DEE39291DBA4BC6004A7EFE /* FCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39281DBA4BC6004A7EFE /* FCLoginViewController.m */; };
+		6DEE392C1DBA4BEB004A7EFE /* FCChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE392B1DBA4BEB004A7EFE /* FCChatViewController.m */; };
+		6DEE392F1DBA4BF2004A7EFE /* FCGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE392E1DBA4BF2004A7EFE /* FCGroupsViewController.m */; };
+		6DEE39321DBA4BF8004A7EFE /* FCSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39311DBA4BF8004A7EFE /* FCSettingTableViewController.m */; };
+		6DEE39351DBA4C24004A7EFE /* FCTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39341DBA4C24004A7EFE /* FCTabBarViewController.m */; };
+		6DEE39381DBA522C004A7EFE /* FCChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39371DBA522C004A7EFE /* FCChat.m */; };
+		6DEE393B1DBA528B004A7EFE /* FCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE393A1DBA528A004A7EFE /* FCObject.m */; };
+		6DEE393E1DBA5625004A7EFE /* FCChatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE393D1DBA5625004A7EFE /* FCChatTableViewCell.m */; };
+		6DEE39411DBA572E004A7EFE /* FCBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39401DBA572E004A7EFE /* FCBaseTableViewCell.m */; };
+		6DEE39441DBA593B004A7EFE /* UIImage+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39431DBA593B004A7EFE /* UIImage+FC.m */; };
+		6DEE39471DBA6A18004A7EFE /* FCMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39461DBA6A18004A7EFE /* FCMessagesViewController.m */; };
+		6DEE394A1DBA6AA9004A7EFE /* FCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39491DBA6AA9004A7EFE /* FCMessage.m */; };
+		6DEE394D1DBA7C2F004A7EFE /* UIViewController+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE394C1DBA7C2F004A7EFE /* UIViewController+FC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		288978DE991F85CCEA13BF59 /* Pods-FireChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FireChat/Pods-FireChat.debug.xcconfig"; sourceTree = "<group>"; };
+		61D3D3038F6D46BAD6EF3B7C /* Pods-FireChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FireChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-FireChat/Pods-FireChat.release.xcconfig"; sourceTree = "<group>"; };
 		6D38E4451DB36A9800A30E88 /* FireChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D38E4491DB36A9800A30E88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6D38E44B1DB36A9800A30E88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D38E44C1DB36A9800A30E88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6D38E44E1DB36A9800A30E88 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6D38E44F1DB36A9800A30E88 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6D38E4521DB36A9900A30E88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D38E4541DB36A9900A30E88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D38E4571DB36A9900A30E88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D38E4591DB36A9900A30E88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D38E4671DB36B5E00A30E88 /* FCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCHomeViewController.h; sourceTree = "<group>"; };
+		6D38E4681DB36B5E00A30E88 /* FCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCHomeViewController.m; sourceTree = "<group>"; };
+		6D38E46B1DB36DC500A30E88 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6D3D636A1DBA280A00DBBB5C /* UIColor+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+FC.h"; sourceTree = "<group>"; };
+		6D3D636B1DBA280A00DBBB5C /* UIColor+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FC.m"; sourceTree = "<group>"; };
+		6D3D636D1DBA2BD700DBBB5C /* FCRoundedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCRoundedButton.h; sourceTree = "<group>"; };
+		6D3D636E1DBA2BD700DBBB5C /* FCRoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCRoundedButton.m; sourceTree = "<group>"; };
+		6D3D63711DBA2C7800DBBB5C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D3D63741DBA2CBD00DBBB5C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		6D3D63751DBA3ECD00DBBB5C /* FCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTextField.h; sourceTree = "<group>"; };
+		6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTextField.m; sourceTree = "<group>"; };
+		6D8F4F2F1DBA84C700C44C5A /* FCSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSettingHeaderView.h; sourceTree = "<group>"; };
+		6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSettingHeaderView.m; sourceTree = "<group>"; };
+		6D8F4F321DBA850500C44C5A /* FCGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGroupTableViewCell.h; sourceTree = "<group>"; };
+		6D8F4F331DBA850500C44C5A /* FCGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGroupTableViewCell.m; sourceTree = "<group>"; };
+		6D8F4F351DBA862000C44C5A /* FCGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGroup.h; sourceTree = "<group>"; };
+		6D8F4F361DBA862000C44C5A /* FCGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGroup.m; sourceTree = "<group>"; };
+		6D8F4F381DBA89EA00C44C5A /* FCSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCSettingHeaderView.xib; sourceTree = "<group>"; };
+		6D8F4F3A1DBA9F6C00C44C5A /* FCAddChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAddChatViewController.h; sourceTree = "<group>"; };
+		6D8F4F3B1DBA9F6C00C44C5A /* FCAddChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAddChatViewController.m; sourceTree = "<group>"; };
+		6D98A3E41DBB288B00A3F147 /* FCAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAlertController.h; sourceTree = "<group>"; };
+		6D98A3E51DBB288B00A3F147 /* FCAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAlertController.m; sourceTree = "<group>"; };
+		6D98A3E71DBB32AA00A3F147 /* FCChangePasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCChangePasswordTableViewController.h; sourceTree = "<group>"; };
+		6D98A3E81DBB32AA00A3F147 /* FCChangePasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCChangePasswordTableViewController.m; sourceTree = "<group>"; };
+		6D98A3EA1DBB369A00A3F147 /* FCEditProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCEditProfileTableViewController.h; sourceTree = "<group>"; };
+		6D98A3EB1DBB369A00A3F147 /* FCEditProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCEditProfileTableViewController.m; sourceTree = "<group>"; };
+		6D98A3ED1DBB3E5500A3F147 /* FCContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCContactTableViewCell.h; sourceTree = "<group>"; };
+		6D98A3EE1DBB3E5500A3F147 /* FCContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCContactTableViewCell.m; sourceTree = "<group>"; };
+		6D98A3F01DBB3E9C00A3F147 /* FCContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCContactListViewController.h; sourceTree = "<group>"; };
+		6D98A3F11DBB3E9C00A3F147 /* FCContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCContactListViewController.m; sourceTree = "<group>"; };
+		6D98A3F31DBB4CFC00A3F147 /* FCRegisterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCRegisterTableViewController.h; sourceTree = "<group>"; };
+		6D98A3F41DBB4CFC00A3F147 /* FCRegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCRegisterTableViewController.m; sourceTree = "<group>"; };
+		6D98A3F91DBB583A00A3F147 /* NSString+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FC.h"; sourceTree = "<group>"; };
+		6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FC.m"; sourceTree = "<group>"; };
+		6DEE39211DBA4483004A7EFE /* AppDelegate+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+FC.h"; sourceTree = "<group>"; };
+		6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+FC.m"; sourceTree = "<group>"; };
+		6DEE39241DBA4B82004A7EFE /* FCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBaseViewController.h; sourceTree = "<group>"; };
+		6DEE39251DBA4B82004A7EFE /* FCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCBaseViewController.m; sourceTree = "<group>"; };
+		6DEE39271DBA4BC6004A7EFE /* FCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLoginViewController.h; sourceTree = "<group>"; };
+		6DEE39281DBA4BC6004A7EFE /* FCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLoginViewController.m; sourceTree = "<group>"; };
+		6DEE392A1DBA4BEB004A7EFE /* FCChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCChatViewController.h; sourceTree = "<group>"; };
+		6DEE392B1DBA4BEB004A7EFE /* FCChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCChatViewController.m; sourceTree = "<group>"; };
+		6DEE392D1DBA4BF2004A7EFE /* FCGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGroupsViewController.h; sourceTree = "<group>"; };
+		6DEE392E1DBA4BF2004A7EFE /* FCGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGroupsViewController.m; sourceTree = "<group>"; };
+		6DEE39301DBA4BF8004A7EFE /* FCSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSettingTableViewController.h; sourceTree = "<group>"; };
+		6DEE39311DBA4BF8004A7EFE /* FCSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSettingTableViewController.m; sourceTree = "<group>"; };
+		6DEE39331DBA4C24004A7EFE /* FCTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTabBarViewController.h; sourceTree = "<group>"; };
+		6DEE39341DBA4C24004A7EFE /* FCTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTabBarViewController.m; sourceTree = "<group>"; };
+		6DEE39361DBA522C004A7EFE /* FCChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCChat.h; sourceTree = "<group>"; };
+		6DEE39371DBA522C004A7EFE /* FCChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCChat.m; sourceTree = "<group>"; };
+		6DEE39391DBA528A004A7EFE /* FCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCObject.h; sourceTree = "<group>"; };
+		6DEE393A1DBA528A004A7EFE /* FCObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCObject.m; sourceTree = "<group>"; };
+		6DEE393C1DBA5625004A7EFE /* FCChatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCChatTableViewCell.h; sourceTree = "<group>"; };
+		6DEE393D1DBA5625004A7EFE /* FCChatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCChatTableViewCell.m; sourceTree = "<group>"; };
+		6DEE393F1DBA572E004A7EFE /* FCBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBaseTableViewCell.h; sourceTree = "<group>"; };
+		6DEE39401DBA572E004A7EFE /* FCBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCBaseTableViewCell.m; sourceTree = "<group>"; };
+		6DEE39421DBA593B004A7EFE /* UIImage+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FC.h"; sourceTree = "<group>"; };
+		6DEE39431DBA593B004A7EFE /* UIImage+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FC.m"; sourceTree = "<group>"; };
+		6DEE39451DBA6A18004A7EFE /* FCMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMessagesViewController.h; sourceTree = "<group>"; };
+		6DEE39461DBA6A18004A7EFE /* FCMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMessagesViewController.m; sourceTree = "<group>"; };
+		6DEE39481DBA6AA9004A7EFE /* FCMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCMessage.h; sourceTree = "<group>"; };
+		6DEE39491DBA6AA9004A7EFE /* FCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMessage.m; sourceTree = "<group>"; };
+		6DEE394B1DBA7C2F004A7EFE /* UIViewController+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FC.h"; sourceTree = "<group>"; };
+		6DEE394C1DBA7C2F004A7EFE /* UIViewController+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FC.m"; sourceTree = "<group>"; };
+		8B5CC8B92A182F9627708111 /* Pods_FireChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +127,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7B8439D25B13BED8254AE9 /* Pods_FireChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		445F524633769E2ADD4FED4B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				288978DE991F85CCEA13BF59 /* Pods-FireChat.debug.xcconfig */,
+				61D3D3038F6D46BAD6EF3B7C /* Pods-FireChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6D38E43C1DB36A9800A30E88 = {
 			isa = PBXGroup;
 			children = (
 				6D38E4471DB36A9800A30E88 /* FireChat */,
 				6D38E4461DB36A9800A30E88 /* Products */,
+				445F524633769E2ADD4FED4B /* Pods */,
+				73EC6615D750997039662B2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,11 +164,13 @@
 		6D38E4471DB36A9800A30E88 /* FireChat */ = {
 			isa = PBXGroup;
 			children = (
+				6D38E4631DB36AB400A30E88 /* Utils */,
+				6D38E4601DB36AB400A30E88 /* Models */,
+				6D38E45F1DB36AB400A30E88 /* Controllers */,
+				6D38E4651DB36AB400A30E88 /* Views */,
+				6D38E46A1DB36DBD00A30E88 /* Resources */,
 				6D38E44B1DB36A9800A30E88 /* AppDelegate.h */,
 				6D38E44C1DB36A9800A30E88 /* AppDelegate.m */,
-				6D38E44E1DB36A9800A30E88 /* ViewController.h */,
-				6D38E44F1DB36A9800A30E88 /* ViewController.m */,
-				6D38E4511DB36A9900A30E88 /* Main.storyboard */,
 				6D38E4541DB36A9900A30E88 /* Assets.xcassets */,
 				6D38E4561DB36A9900A30E88 /* LaunchScreen.storyboard */,
 				6D38E4591DB36A9900A30E88 /* Info.plist */,
@@ -74,9 +182,147 @@
 		6D38E4481DB36A9800A30E88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6D38E4491DB36A9800A30E88 /* main.m */,
+				6D3D63741DBA2CBD00DBBB5C /* Prefix.pch */,
+				6D3D63711DBA2C7800DBBB5C /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6D38E45F1DB36AB400A30E88 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6D98A3E41DBB288B00A3F147 /* FCAlertController.h */,
+				6D98A3E51DBB288B00A3F147 /* FCAlertController.m */,
+				6DEE39241DBA4B82004A7EFE /* FCBaseViewController.h */,
+				6DEE39251DBA4B82004A7EFE /* FCBaseViewController.m */,
+				6DEE39271DBA4BC6004A7EFE /* FCLoginViewController.h */,
+				6DEE39281DBA4BC6004A7EFE /* FCLoginViewController.m */,
+				6D98A3F31DBB4CFC00A3F147 /* FCRegisterTableViewController.h */,
+				6D98A3F41DBB4CFC00A3F147 /* FCRegisterTableViewController.m */,
+				6D38E4671DB36B5E00A30E88 /* FCHomeViewController.h */,
+				6D38E4681DB36B5E00A30E88 /* FCHomeViewController.m */,
+				6DEE392A1DBA4BEB004A7EFE /* FCChatViewController.h */,
+				6DEE392B1DBA4BEB004A7EFE /* FCChatViewController.m */,
+				6DEE392D1DBA4BF2004A7EFE /* FCGroupsViewController.h */,
+				6DEE392E1DBA4BF2004A7EFE /* FCGroupsViewController.m */,
+				6DEE39301DBA4BF8004A7EFE /* FCSettingTableViewController.h */,
+				6DEE39311DBA4BF8004A7EFE /* FCSettingTableViewController.m */,
+				6DEE39331DBA4C24004A7EFE /* FCTabBarViewController.h */,
+				6DEE39341DBA4C24004A7EFE /* FCTabBarViewController.m */,
+				6DEE39451DBA6A18004A7EFE /* FCMessagesViewController.h */,
+				6DEE39461DBA6A18004A7EFE /* FCMessagesViewController.m */,
+				6D8F4F3A1DBA9F6C00C44C5A /* FCAddChatViewController.h */,
+				6D8F4F3B1DBA9F6C00C44C5A /* FCAddChatViewController.m */,
+				6D98A3E71DBB32AA00A3F147 /* FCChangePasswordTableViewController.h */,
+				6D98A3E81DBB32AA00A3F147 /* FCChangePasswordTableViewController.m */,
+				6D98A3EA1DBB369A00A3F147 /* FCEditProfileTableViewController.h */,
+				6D98A3EB1DBB369A00A3F147 /* FCEditProfileTableViewController.m */,
+				6D98A3F01DBB3E9C00A3F147 /* FCContactListViewController.h */,
+				6D98A3F11DBB3E9C00A3F147 /* FCContactListViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6D38E4601DB36AB400A30E88 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6D38E4611DB36AB400A30E88 /* Business */,
+				6D38E4621DB36AB400A30E88 /* DataAccess */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6D38E4611DB36AB400A30E88 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				6DEE39391DBA528A004A7EFE /* FCObject.h */,
+				6DEE393A1DBA528A004A7EFE /* FCObject.m */,
+				6DEE39361DBA522C004A7EFE /* FCChat.h */,
+				6DEE39371DBA522C004A7EFE /* FCChat.m */,
+				6D8F4F351DBA862000C44C5A /* FCGroup.h */,
+				6D8F4F361DBA862000C44C5A /* FCGroup.m */,
+				6DEE39481DBA6AA9004A7EFE /* FCMessage.h */,
+				6DEE39491DBA6AA9004A7EFE /* FCMessage.m */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		6D38E4621DB36AB400A30E88 /* DataAccess */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataAccess;
+			sourceTree = "<group>";
+		};
+		6D38E4631DB36AB400A30E88 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6D38E4641DB36AB400A30E88 /* Categories */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6D38E4641DB36AB400A30E88 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6D3D636A1DBA280A00DBBB5C /* UIColor+FC.h */,
+				6D3D636B1DBA280A00DBBB5C /* UIColor+FC.m */,
+				6DEE39211DBA4483004A7EFE /* AppDelegate+FC.h */,
+				6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */,
+				6DEE39421DBA593B004A7EFE /* UIImage+FC.h */,
+				6DEE39431DBA593B004A7EFE /* UIImage+FC.m */,
+				6DEE394B1DBA7C2F004A7EFE /* UIViewController+FC.h */,
+				6DEE394C1DBA7C2F004A7EFE /* UIViewController+FC.m */,
+				6D98A3F91DBB583A00A3F147 /* NSString+FC.h */,
+				6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		6D38E4651DB36AB400A30E88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6D38E4661DB36AB400A30E88 /* Cells */,
+				6D3D636D1DBA2BD700DBBB5C /* FCRoundedButton.h */,
+				6D3D636E1DBA2BD700DBBB5C /* FCRoundedButton.m */,
+				6D3D63751DBA3ECD00DBBB5C /* FCTextField.h */,
+				6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */,
+				6D8F4F2F1DBA84C700C44C5A /* FCSettingHeaderView.h */,
+				6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */,
+				6D8F4F381DBA89EA00C44C5A /* FCSettingHeaderView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6D38E4661DB36AB400A30E88 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6DEE393F1DBA572E004A7EFE /* FCBaseTableViewCell.h */,
+				6DEE39401DBA572E004A7EFE /* FCBaseTableViewCell.m */,
+				6DEE393C1DBA5625004A7EFE /* FCChatTableViewCell.h */,
+				6DEE393D1DBA5625004A7EFE /* FCChatTableViewCell.m */,
+				6D8F4F321DBA850500C44C5A /* FCGroupTableViewCell.h */,
+				6D8F4F331DBA850500C44C5A /* FCGroupTableViewCell.m */,
+				6D98A3ED1DBB3E5500A3F147 /* FCContactTableViewCell.h */,
+				6D98A3EE1DBB3E5500A3F147 /* FCContactTableViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		6D38E46A1DB36DBD00A30E88 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D38E46B1DB36DC500A30E88 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		73EC6615D750997039662B2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B5CC8B92A182F9627708111 /* Pods_FireChat.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,9 +332,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D38E45C1DB36A9900A30E88 /* Build configuration list for PBXNativeTarget "FireChat" */;
 			buildPhases = (
+				9327CED13DE5C512E2BA3DE1 /* [CP] Check Pods Manifest.lock */,
 				6D38E4411DB36A9800A30E88 /* Sources */,
 				6D38E4421DB36A9800A30E88 /* Frameworks */,
 				6D38E4431DB36A9800A30E88 /* Resources */,
+				5224A9766A6D0DC86BCDD2CB /* [CP] Embed Pods Frameworks */,
+				DC0E29C9ABFE5A61CB2F7F1B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -105,6 +354,7 @@
 		6D38E43D1DB36A9800A30E88 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = FC;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Sokna Ly";
 				TargetAttributes = {
@@ -136,36 +386,106 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D38E46C1DB36DC500A30E88 /* Main.storyboard in Resources */,
 				6D38E4581DB36A9900A30E88 /* LaunchScreen.storyboard in Resources */,
 				6D38E4551DB36A9900A30E88 /* Assets.xcassets in Resources */,
-				6D38E4531DB36A9900A30E88 /* Main.storyboard in Resources */,
+				6D8F4F391DBA89EA00C44C5A /* FCSettingHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5224A9766A6D0DC86BCDD2CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireChat/Pods-FireChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9327CED13DE5C512E2BA3DE1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DC0E29C9ABFE5A61CB2F7F1B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FireChat/Pods-FireChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6D38E4411DB36A9800A30E88 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D38E4501DB36A9800A30E88 /* ViewController.m in Sources */,
+				6D98A3EC1DBB369A00A3F147 /* FCEditProfileTableViewController.m in Sources */,
+				6D3D63721DBA2C7800DBBB5C /* main.m in Sources */,
+				6DEE392C1DBA4BEB004A7EFE /* FCChatViewController.m in Sources */,
+				6D8F4F371DBA862000C44C5A /* FCGroup.m in Sources */,
+				6D8F4F3C1DBA9F6C00C44C5A /* FCAddChatViewController.m in Sources */,
+				6D3D636C1DBA280A00DBBB5C /* UIColor+FC.m in Sources */,
+				6D98A3EF1DBB3E5500A3F147 /* FCContactTableViewCell.m in Sources */,
+				6DEE392F1DBA4BF2004A7EFE /* FCGroupsViewController.m in Sources */,
+				6D98A3E61DBB288B00A3F147 /* FCAlertController.m in Sources */,
+				6DEE39471DBA6A18004A7EFE /* FCMessagesViewController.m in Sources */,
+				6D98A3F21DBB3E9C00A3F147 /* FCContactListViewController.m in Sources */,
+				6DEE394D1DBA7C2F004A7EFE /* UIViewController+FC.m in Sources */,
+				6D8F4F341DBA850500C44C5A /* FCGroupTableViewCell.m in Sources */,
+				6DEE393B1DBA528B004A7EFE /* FCObject.m in Sources */,
+				6D3D63771DBA3ECD00DBBB5C /* FCTextField.m in Sources */,
+				6DEE39231DBA4483004A7EFE /* AppDelegate+FC.m in Sources */,
+				6DEE394A1DBA6AA9004A7EFE /* FCMessage.m in Sources */,
+				6DEE39381DBA522C004A7EFE /* FCChat.m in Sources */,
+				6D98A3E91DBB32AA00A3F147 /* FCChangePasswordTableViewController.m in Sources */,
+				6DEE39411DBA572E004A7EFE /* FCBaseTableViewCell.m in Sources */,
+				6D98A3FB1DBB583A00A3F147 /* NSString+FC.m in Sources */,
+				6DEE39261DBA4B82004A7EFE /* FCBaseViewController.m in Sources */,
+				6DEE39441DBA593B004A7EFE /* UIImage+FC.m in Sources */,
+				6DEE39351DBA4C24004A7EFE /* FCTabBarViewController.m in Sources */,
+				6D98A3F51DBB4CFC00A3F147 /* FCRegisterTableViewController.m in Sources */,
+				6D3D636F1DBA2BD700DBBB5C /* FCRoundedButton.m in Sources */,
+				6DEE39291DBA4BC6004A7EFE /* FCLoginViewController.m in Sources */,
+				6DEE393E1DBA5625004A7EFE /* FCChatTableViewCell.m in Sources */,
 				6D38E44D1DB36A9800A30E88 /* AppDelegate.m in Sources */,
-				6D38E44A1DB36A9800A30E88 /* main.m in Sources */,
+				6DEE39321DBA4BF8004A7EFE /* FCSettingTableViewController.m in Sources */,
+				6D38E4691DB36B5E00A30E88 /* FCHomeViewController.m in Sources */,
+				6D8F4F311DBA84C700C44C5A /* FCSettingHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6D38E4511DB36A9900A30E88 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6D38E4521DB36A9900A30E88 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6D38E4561DB36A9900A30E88 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -261,8 +581,11 @@
 		};
 		6D38E45D1DB36A9900A30E88 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 288978DE991F85CCEA13BF59 /* Pods-FireChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FireChat/Supporting Files/Prefix.pch";
 				INFOPLIST_FILE = FireChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.soknaly.FireChat;
@@ -272,8 +595,11 @@
 		};
 		6D38E45E1DB36A9900A30E88 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61D3D3038F6D46BAD6EF3B7C /* Pods-FireChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FireChat/Supporting Files/Prefix.pch";
 				INFOPLIST_FILE = FireChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.soknaly.FireChat;
@@ -300,6 +626,7 @@
 				6D38E45E1DB36A9900A30E88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
