@@ -10,6 +10,10 @@
 
 @interface NSString (FC)
 
+- (instancetype)trimmedString;
+
+- (BOOL)isEmpty;
+
 - (BOOL)isValidEmail;
 
 @end

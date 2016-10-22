@@ -9,5 +9,6 @@ target 'FireChat' do
   pod 'Firebase/Database'
   pod 'JSQMessagesViewController'
   pod 'SDWebImage'
+  pod 'TPKeyboardAvoiding'
 
 end

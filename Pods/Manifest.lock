@@ -38,6 +38,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - TPKeyboardAvoiding (1.3)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -45,6 +46,7 @@ DEPENDENCIES:
   - Firebase/Database
   - JSQMessagesViewController
   - SDWebImage
+  - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
@@ -60,7 +62,8 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 0ee3f80237268192a3e8337fd0d787f1a1bf5a7a
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  TPKeyboardAvoiding: a5138f318c06fb3e151f886e18ce4a72695d9cbe
 
-PODFILE CHECKSUM: f231b7b573b988366b376a3cacca2c97665549a6
+PODFILE CHECKSUM: 401be81945ce05305de25696b44b737c3775c36f
 
 COCOAPODS: 1.0.1

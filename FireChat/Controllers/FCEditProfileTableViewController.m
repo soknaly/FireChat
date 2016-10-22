@@ -11,6 +11,9 @@
 @interface FCEditProfileTableViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem *saveBarButtonItem;
+@property (nonatomic, weak) IBOutlet UITextField *firstNameTextField;
+@property (nonatomic, weak) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailAddressTextField;
 
 @end
 

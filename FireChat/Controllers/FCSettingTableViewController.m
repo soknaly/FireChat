@@ -70,6 +70,7 @@ FCSettingHeaderViewDelegate
                          cancleHandlerBlock:nil
                           otherHandlerBlock:^{
                             //TODO: Code to logout user
+                            [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
                           }];
   }
 }
