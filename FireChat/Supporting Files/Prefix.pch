@@ -1,0 +1,19 @@
+//
+//  Prefix.h
+//  FireChat
+//
+//  Created by soknaly on 10/21/16.
+//  Copyright © 2016 Sokna Ly. All rights reserved.
+//
+
+#ifndef Prefix_h
+#define Prefix_h
+
+#import "UIColor+FC.h" 
+#import "UIImage+FC.h"
+#import "UIImageView+WebCache.h"
+#import "UIViewController+FC.h"
+#import <Firebase.h>
+#import "FCAlertController.h"
+
+#endif /* Prefix_h */
