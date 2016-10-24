@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+FC.h"
+#import "FBSDKCoreKit.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +21,22 @@
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self setupAppearance];
   [FIRApp configure];
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
   return YES;
 }
 
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *,id> *)options {
+  BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:app
+                                                                openURL:url
+                                                      sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                  ];
+  // Add any custom logic here.
+  return handled;
+
+}
 
 @end

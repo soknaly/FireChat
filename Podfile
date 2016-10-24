@@ -10,5 +10,6 @@ target 'FireChat' do
   pod 'JSQMessagesViewController'
   pod 'SDWebImage'
   pod 'TPKeyboardAvoiding'
-
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
 end

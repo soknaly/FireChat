@@ -10,6 +10,8 @@
 #import "FCTextField.h"
 #import "FCRoundedButton.h"
 #import "FCTabBarViewController.h"
+#import "FBSDKLoginKit.h"
+#import "FBSDKCoreKit.h"
 
 @interface FCLoginViewController ()<
 UITextFieldDelegate
@@ -95,25 +97,30 @@ UITextFieldDelegate
 
 - (IBAction)loginButtonAction:(id)sender {
   [self validateLoginWithCompletion:^{
-    //TODO: Login with Firebase here
     [[FIRAuth auth] signInWithEmail:self.usernameTextField.text
-                           password:self.passwordTextField.text completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                             if (user && !error) {
-                               FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
-                               tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                               [self presentViewController:tabBarController animated:YES completion:nil];
-                               
-                             } else {
-                               [FCAlertController showErrorWithTitle:@"Login Failed"
-                                                             message:error.localizedDescription
-                                                    inViewController:self];
-                             }
-                           }];
+                           password:self.passwordTextField.text
+                         completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                           [self handleLoginWithUser:user error:error];
+                         }];
   }];
 }
 
 - (IBAction)facebookButtonAction:(id)sender {
-  
+  FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+  [loginManager logInWithReadPermissions:@[@"email",@"public_profile"]
+                      fromViewController:self
+                                 handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                   if (result.token) {
+                                     FIRAuthCredential *authCredential = [FIRFacebookAuthProvider credentialWithAccessToken:result.token.tokenString];
+                                     [[FIRAuth auth] signInWithCredential:authCredential
+                                                               completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                                                 [self handleLoginWithUser:user error:error];
+                                                               }];
+                                   } else {
+                                     
+                                   }
+                                   
+                                 }];
 }
 
 - (IBAction)twitterButtonAction:(id)sender {
@@ -126,6 +133,20 @@ UITextFieldDelegate
 
 - (IBAction)registerButtonAction:(id)sender {
   
+}
+
+- (void)handleLoginWithUser:(FIRUser *)user
+                      error:(NSError *)error {
+  if (user && !error) {
+    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:tabBarController animated:YES completion:nil];
+    
+  } else {
+    [FCAlertController showErrorWithTitle:@"Login Failed"
+                                  message:error.localizedDescription
+                         inViewController:self];
+  }
 }
 
 #pragma mark - Touch
