@@ -72,9 +72,9 @@ UITextFieldDelegate
     [self.usernameTextField becomeFirstResponder];
   } else {
     if (![self.usernameTextField.text isValidEmail]) {
-        message = @"Please input valid email!";
+      message = @"Please input valid email!";
+      [self.usernameTextField becomeFirstResponder];
     }
-    [self.usernameTextField becomeFirstResponder];
   }
   
   if ([self.passwordTextField.text isEmpty]) {
@@ -85,7 +85,7 @@ UITextFieldDelegate
     [FCAlertController showErrorWithTitle:@"Login Failed"
                                   message:message
                          inViewController:self];
-
+    
   } else {
     completion();
   }
@@ -96,9 +96,19 @@ UITextFieldDelegate
 - (IBAction)loginButtonAction:(id)sender {
   [self validateLoginWithCompletion:^{
     //TODO: Login with Firebase here
-    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
-    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:tabBarController animated:YES completion:nil];
+    [[FIRAuth auth] signInWithEmail:self.usernameTextField.text
+                           password:self.passwordTextField.text completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                             if (user && !error) {
+                               FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+                               tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                               [self presentViewController:tabBarController animated:YES completion:nil];
+                               
+                             } else {
+                               [FCAlertController showErrorWithTitle:@"Login Failed"
+                                                             message:error.localizedDescription
+                                                    inViewController:self];
+                             }
+                           }];
   }];
 }
 

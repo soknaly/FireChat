@@ -16,5 +16,5 @@
 #import <Firebase.h>
 #import "FCAlertController.h"
 #import "NSString+FC.h"
-
+@import Firebase;
 #endif /* Prefix_h */

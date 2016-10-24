@@ -19,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self setupAppearance];
+  [FIRApp configure];
   return YES;
 }
 
