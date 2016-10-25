@@ -128,10 +128,6 @@ GIDSignInUIDelegate
                                  }];
 }
 
-- (IBAction)twitterButtonAction:(id)sender {
-  
-}
-
 - (IBAction)googleButtonAction:(id)sender {
   [[GIDSignIn sharedInstance] signIn];
 }
