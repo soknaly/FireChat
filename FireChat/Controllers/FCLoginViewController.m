@@ -106,10 +106,6 @@ UITextFieldDelegate
   
 }
 
-- (IBAction)twitterButtonAction:(id)sender {
-  
-}
-
 - (IBAction)googleButtonAction:(id)sender {
   
 }
