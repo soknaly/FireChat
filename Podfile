@@ -12,4 +12,5 @@ target 'FireChat' do
   pod 'TPKeyboardAvoiding'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
 end

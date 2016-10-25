@@ -12,9 +12,12 @@
 #import "FCTabBarViewController.h"
 #import "FBSDKLoginKit.h"
 #import "FBSDKCoreKit.h"
+#import "GoogleSignIn/GoogleSignIn.h"
 
 @interface FCLoginViewController ()<
-UITextFieldDelegate
+UITextFieldDelegate,
+GIDSignInDelegate,
+GIDSignInUIDelegate
 >
 
 @property (nonatomic, weak) IBOutlet FCTextField *usernameTextField;
@@ -52,6 +55,8 @@ UITextFieldDelegate
 }
 
 - (void)setupView {
+  [GIDSignIn sharedInstance].delegate = self;
+  [GIDSignIn sharedInstance].uiDelegate = self;
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
 }
@@ -128,7 +133,7 @@ UITextFieldDelegate
 }
 
 - (IBAction)googleButtonAction:(id)sender {
-  
+  [[GIDSignIn sharedInstance] signIn];
 }
 
 - (IBAction)registerButtonAction:(id)sender {
@@ -223,5 +228,24 @@ UITextFieldDelegate
                    completion:nil];
   
 }
+
+#pragma mark - GIDSigninDelegate
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+  if (!error) {
+    FIRAuthCredential *googleCredential = [FIRGoogleAuthProvider credentialWithIDToken:user.authentication.idToken accessToken:user.authentication.accessToken];
+    [[FIRAuth auth] signInWithCredential:googleCredential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+      [self handleLoginWithUser:user error:error];
+    }];
+  } else {
+    [FCAlertController showErrorWithTitle:@"Login Failed"
+                                  message:error.localizedDescription
+                         inViewController:self];
+  }
+  
+}
+
 
 @end
