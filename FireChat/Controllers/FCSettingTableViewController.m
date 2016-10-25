@@ -69,8 +69,16 @@ FCSettingHeaderViewDelegate
                            inViewController:self
                          cancleHandlerBlock:nil
                           otherHandlerBlock:^{
-                            //TODO: Code to logout user
-                            [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
+                            NSError *error;
+                            [[FIRAuth auth] signOut:&error];
+                            if (!error) {
+                              [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
+                            } else {
+                              [FCAlertController showErrorWithTitle:@"Logout Failed"
+                                                            message:error.localizedDescription
+                                                   inViewController:self];
+                            }
+                            
                           }];
   }
 }
