@@ -42,6 +42,16 @@ UITextFieldDelegate
   [self.usernameTextField becomeFirstResponder];
 }
 
+#pragma mark - Views
+
+- (void)populateProfileViewWithUser:(FCUser *)user {
+  BOOL shouldHide = user == nil;
+  self.profileContainerView.hidden = shouldHide;
+  self.notFoundLabel.hidden = !shouldHide;
+  [self.profileImageView sd_setImageWithURL:user.photoURL placeholderImage:[UIImage profilePlaceholderImage]];
+  self.usernameLabel.text = user.displayName;
+}
+
 #pragma mark - Actions
 
 - (IBAction)dismissButtonAction:(id)sender {
@@ -53,9 +63,22 @@ UITextFieldDelegate
 }
 
 - (IBAction)searchButtonAction:(id)sender {
-  
+  [FCProgressHUD show];
+  [[FCAPIService sharedServiced] searchUserWithEmail:self.usernameTextField.text
+                                             success:^(FCUser *user) {
+                                               [FCProgressHUD dismiss];
+                                               [self populateProfileViewWithUser:user];
+                                             }
+                                             failure:^(NSError *error) {
+                                               [FCProgressHUD dismiss];
+                                               [FCAlertController showErrorWithTitle:@"Search Failed"
+                                                                             message:error.localizedDescription
+                                                                    inViewController:self];
+                                             }];
 }
 
+- (IBAction)addChatButtonAction:(id)sender {
+}
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -63,5 +86,9 @@ UITextFieldDelegate
   return YES;
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+  [self populateProfileViewWithUser:nil];
+  return YES;
+}
 
 @end

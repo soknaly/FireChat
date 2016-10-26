@@ -254,6 +254,9 @@
                                         <state key="normal" title="Add Chat">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addChatButtonAction:" destination="y4b-8o-QXK" eventType="touchUpInside" id="TWs-8y-WAZ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -463,7 +466,7 @@
                                     <action selector="googleButtonAction:" destination="1Ji-RB-Vpf" eventType="touchUpInside" id="ieh-7X-LNd"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="firechat_icon_blue" translatesAutoresizingMaskIntoConstraints="NO" id="zxL-tS-ijz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firechat_icon_blue" translatesAutoresizingMaskIntoConstraints="NO" id="zxL-tS-ijz">
                                 <rect key="frame" x="67" y="75" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zxL-tS-ijz" secondAttribute="height" multiplier="15:8" id="7bh-dI-CCf"/>

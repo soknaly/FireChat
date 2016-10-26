@@ -116,6 +116,10 @@ UITextFieldDelegate
                                                                                                         message:error.localizedDescription
                                                                                                inViewController:self];
                                                                         } else {
+                                                                          [[FCAPIService sharedServiced] createUserWithID:user.uid
+                                                                                                              displayName:user.displayName
+                                                                                                             emailAddress:user.email
+                                                                                                                 photoURL:imageURL];
                                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                                           [self.delegate registerTableViewControllerDidFinishRegister:self];
                                                                         }

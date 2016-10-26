@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) FIRStorageReference *imageStorageReference;
 
+@property (nonatomic, strong) FIRDatabaseReference *userDatabaseReference;
+
 @end
 
 @implementation FCAPIService
@@ -30,8 +32,22 @@
   if (self) {
     FIRStorageReference *storageReference = [[FIRStorage storage] referenceForURL:@"gs://firechat-8eacf.appspot.com"];
     self.imageStorageReference = [storageReference child:@"images"];
+    FIRDatabaseReference *databaseReference = [[FIRDatabase database] reference];
+    self.userDatabaseReference = [databaseReference child:@"users"];
   }
   return self;
+}
+
+- (void)createUserWithID:(NSString *)userID
+             displayName:(NSString *)displayName
+            emailAddress:(NSString *)emailAddress
+                photoURL:(NSURL *)photoURL {
+  FIRDatabaseReference *userReference = [self.userDatabaseReference child:userID];
+  NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+  dictionary[@"displayName"] = displayName;
+  dictionary[@"email"] = emailAddress;
+  dictionary[@"photoURL"] = photoURL.absoluteString;
+  [userReference setValue:dictionary];
 }
 
 
@@ -65,6 +81,25 @@
                       }];
   }
   
+}
+
+- (void)searchUserWithEmail:(NSString *)email
+                    success:(void (^)(FCUser *))success
+                    failure:(void (^)(NSError *))failure {
+  
+  FIRDatabaseQuery *emailQuery = [[self.userDatabaseReference queryOrderedByChild:@"email"] queryEqualToValue:email];
+  [emailQuery observeSingleEventOfType:FIRDataEventTypeValue
+                             withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                               if (snapshot.exists) {
+                                 FCUser *user = [[FCUser alloc] initWithDictionary:snapshot.value];
+                                 success(user);
+                               } else {
+                                 success(nil);
+                               }
+                             }
+                       withCancelBlock:^(NSError * _Nonnull error) {
+                         failure(error);
+                       }];
 }
 
 @end

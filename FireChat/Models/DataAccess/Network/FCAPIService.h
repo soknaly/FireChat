@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FCUser.h"
 
 @interface FCAPIService : NSObject
 
@@ -17,5 +18,14 @@
            progress:(void(^)(NSProgress *progress))progress
             success:(void(^)(NSURL *imageURL))success
             failure:(void(^)(NSError *error))failure;
+
+- (void)createUserWithID:(NSString *)userID
+             displayName:(NSString *)displayName
+            emailAddress:(NSString *)emailAddress
+                photoURL:(NSURL *)photoURL;
+
+- (void)searchUserWithEmail:(NSString *)email
+                    success:(void(^)(FCUser *user))success
+                    failure:(void(^)(NSError *error))failure;
 
 @end

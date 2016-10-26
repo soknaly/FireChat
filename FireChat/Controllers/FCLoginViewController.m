@@ -136,6 +136,10 @@ FCRegisterTableViewControllerDelegate
                                      FIRAuthCredential *authCredential = [FIRFacebookAuthProvider credentialWithAccessToken:result.token.tokenString];
                                      [[FIRAuth auth] signInWithCredential:authCredential
                                                                completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                                                 [[FCAPIService sharedServiced] createUserWithID:user.uid
+                                                                                                     displayName:user.displayName
+                                                                                                    emailAddress:user.email
+                                                                                                        photoURL:user.photoURL];
                                                                  [self handleLoginWithUser:user error:error];
                                                                }];
                                    } else {
@@ -253,9 +257,15 @@ didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   if (!error) {
     FIRAuthCredential *googleCredential = [FIRGoogleAuthProvider credentialWithIDToken:user.authentication.idToken accessToken:user.authentication.accessToken];
-    [[FIRAuth auth] signInWithCredential:googleCredential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-      [self handleLoginWithUser:user error:error];
-    }];
+    [[FIRAuth auth] signInWithCredential:googleCredential
+                              completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                [[FCAPIService sharedServiced] createUserWithID:user.uid
+                                                                    displayName:user.displayName
+                                                                   emailAddress:user.email
+                                                                       photoURL:user.photoURL];
+                                [self handleLoginWithUser:user
+                                                    error:error];
+                              }];
   } else {
     [FCAlertController showErrorWithTitle:@"Login Failed"
                                   message:error.localizedDescription
