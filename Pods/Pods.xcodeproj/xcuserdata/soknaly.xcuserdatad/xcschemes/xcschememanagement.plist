@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,6 +35,11 @@
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,6 +62,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2FB1C99CF17DF12AC7F70E7D5742D7A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>59CDDB315DD2B098E0CD9ED56B026F4B</key>
 		<dict>
 			<key>primary</key>
@@ -52,37 +77,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>857CC7E7D123FF1095091EBA9BFC5742</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9841EB607C91ECDAC279BC78AFDE3774</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9D0F2E5EA1B46A5D72FFD42B0B39DBBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A1FAE7D57CF6B918F2B79DDF10A07C9C</key>
+		<key>A789C5F49D13F8ABD799A4CADCC3DE80</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A3713480F69D2C1BF1588CB47397642E</key>
+		<key>B5B0456F9FCA18FDF6674C2549CA9800</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A37E1465FD006AD35BA802DB799AAF81</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A5188A8774F50E4F52A3FB6416D5AFF9</key>
+		<key>F8E73B77B565F7934FBB7C34BDCA4291</key>
 		<dict>
 			<key>primary</key>
 			<true/>

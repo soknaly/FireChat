@@ -100,7 +100,37 @@ UITextFieldDelegate
 
 - (IBAction)createAccountButtonAction:(id)sender {
   [self validateRegisterWithCompletion:^{
-   //TODO: Register account to firebase
+    [[FIRAuth auth] createUserWithEmail:self.emailAddressTextField.text
+                               password:self.passwordTextField.text
+                             completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                               if (!error) {
+                                 [[FCAPIService sharedServiced] uploadImage:self.profileImage
+                                                                   withName:user.uid progress:nil
+                                                                    success:^(NSURL *imageURL) {
+                                                                      FIRUserProfileChangeRequest *changeRequest = [user profileChangeRequest];
+                                                                      changeRequest.displayName = [NSString stringWithFormat:@"%@ %@", self.firstNameTextField.text, self.lastNameTextField.text];
+                                                                      changeRequest.photoURL = imageURL;
+                                                                      [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+                                                                        if (error) {
+                                                                          [FCAlertController showErrorWithTitle:@"Register Failed"
+                                                                                                        message:error.localizedDescription
+                                                                                               inViewController:self];
+                                                                        } else {
+                                                                          [self dismissViewControllerAnimated:YES completion:nil];
+                                                                          [self.delegate registerTableViewControllerDidFinishRegister:self];
+                                                                        }
+                                                                      }];
+                                                                    }
+                                                                    failure:^(NSError *error) {
+                                                                      
+                                                                    }];
+                               } else {
+                                 [FCAlertController showErrorWithTitle:@"Register Failed"
+                                                               message:error.localizedDescription
+                                                      inViewController:self];
+                               }
+                               
+                             }];
   }];
   
 }
@@ -114,10 +144,10 @@ UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
   NSArray<UITextField *>* textFields = @[self.firstNameTextField,
-                                         self.lastNameTextField,
-                                         self.emailAddressTextField,
-                                         self.passwordTextField,
-                                         self.confirmPasswordTextField];
+                                             self.lastNameTextField,
+                                             self.emailAddressTextField,
+                                             self.passwordTextField,
+                                             self.confirmPasswordTextField];
   [textFields enumerateObjectsUsingBlock:^(UITextField * _Nonnull textField, NSUInteger idx, BOOL * _Nonnull stop) {
     BOOL missing = NO;
     if ([textField.text isEmpty]) {

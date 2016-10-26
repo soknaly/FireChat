@@ -41,9 +41,11 @@ FCSettingHeaderViewDelegate
 }
 
 - (void)setupHeaderView {
-  [self.headerView.profileImageView sd_setImageWithURL:[NSURL URLWithString:@"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/5/005/088/08a/0b388f2.jpg"]
+  FIRUser *currentUser = [[FIRAuth auth] currentUser];
+  [self.headerView.profileImageView sd_setImageWithURL:currentUser.photoURL
                                       placeholderImage:[UIImage profilePlaceholderImage]];
   self.tableView.tableHeaderView = self.headerView;
+  self.headerView.nameLabel.text = currentUser.displayName;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -69,8 +71,16 @@ FCSettingHeaderViewDelegate
                            inViewController:self
                          cancleHandlerBlock:nil
                           otherHandlerBlock:^{
-                            //TODO: Code to logout user
-                            [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
+                            NSError *error;
+                            [[FIRAuth auth] signOut:&error];
+                            if (!error) {
+                              [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
+                            } else {
+                              [FCAlertController showErrorWithTitle:@"Logout Failed"
+                                                            message:error.localizedDescription
+                                                   inViewController:self];
+                            }
+                            
                           }];
   }
 }

@@ -354,7 +354,6 @@
                                         <state key="normal" title="Register"/>
                                         <connections>
                                             <action selector="registerButtonAction:" destination="1Ji-RB-Vpf" eventType="touchUpInside" id="kfM-nh-G8G"/>
-                                            <segue destination="NbZ-bG-tSb" kind="presentation" modalTransitionStyle="crossDissolve" id="JIv-c4-jkN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -370,7 +369,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FireChat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-KA-P5M">
-                                <rect key="frame" x="124" y="201" width="126" height="39"/>
+                                <rect key="frame" x="124" y="211" width="126" height="39"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.59607843140000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -405,8 +404,8 @@
                                     <action selector="googleButtonAction:" destination="1Ji-RB-Vpf" eventType="touchUpInside" id="ieh-7X-LNd"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firechat_icon_blue" translatesAutoresizingMaskIntoConstraints="NO" id="zxL-tS-ijz">
-                                <rect key="frame" x="67" y="57" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="firechat_icon_blue" translatesAutoresizingMaskIntoConstraints="NO" id="zxL-tS-ijz">
+                                <rect key="frame" x="67" y="75" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zxL-tS-ijz" secondAttribute="height" multiplier="15:8" id="7bh-dI-CCf"/>
                                     <constraint firstAttribute="height" constant="128" id="KNf-Wt-WeI"/>
@@ -417,7 +416,7 @@
                         <constraints>
                             <constraint firstItem="fOD-KA-P5M" firstAttribute="centerX" secondItem="PYs-KJ-tcL" secondAttribute="centerX" id="1pV-TW-1dX"/>
                             <constraint firstAttribute="trailing" secondItem="1WF-Qm-Rt5" secondAttribute="trailing" constant="30" id="45n-XW-tKh"/>
-                            <constraint firstItem="1WF-Qm-Rt5" firstAttribute="top" secondItem="fOD-KA-P5M" secondAttribute="bottom" constant="30" id="4aU-x6-utz"/>
+                            <constraint firstItem="1WF-Qm-Rt5" firstAttribute="top" secondItem="fOD-KA-P5M" secondAttribute="bottom" constant="20" id="4aU-x6-utz"/>
                             <constraint firstItem="1WF-Qm-Rt5" firstAttribute="leading" secondItem="PYs-KJ-tcL" secondAttribute="leading" constant="30" id="5mS-a1-iMC"/>
                             <constraint firstItem="1WF-Qm-Rt5" firstAttribute="centerY" secondItem="PYs-KJ-tcL" secondAttribute="centerY" constant="32.5" id="9S9-Fy-ewr"/>
                             <constraint firstItem="Uws-qP-dDD" firstAttribute="top" secondItem="ClR-aL-E5l" secondAttribute="bottom" constant="8" id="Wpg-d0-4Jx"/>
@@ -449,7 +448,7 @@
         <!--Create Account-->
         <scene sceneID="7Pv-Jo-F90">
             <objects>
-                <tableViewController id="asf-7s-8Xt" customClass="FCRegisterTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FCRegisterTableViewController" id="asf-7s-8Xt" customClass="FCRegisterTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hRD-YN-ATH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

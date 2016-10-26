@@ -39,6 +39,7 @@
   [super awakeFromNib];
   self.profileImageView.userInteractionEnabled = YES;
   self.profileImageView.layer.cornerRadius = CGRectGetWidth(self.profileImageView.frame)/2;
+  self.profileImageView.layer.masksToBounds = YES;
   [self.profileImageView addGestureRecognizer:self.tapGestureRecognizer];
 }
 

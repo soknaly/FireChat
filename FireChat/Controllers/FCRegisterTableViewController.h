@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class FCRegisterTableViewController;
+
+@protocol FCRegisterTableViewControllerDelegate <NSObject>
+
+- (void)registerTableViewControllerDidFinishRegister:(FCRegisterTableViewController *)registerTableViewController;
+
+@end
+
 @interface FCRegisterTableViewController : UITableViewController
+
+@property (nonatomic, weak) id<FCRegisterTableViewControllerDelegate> delegate;
 
 @end

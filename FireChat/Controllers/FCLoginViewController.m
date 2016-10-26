@@ -10,9 +10,16 @@
 #import "FCTextField.h"
 #import "FCRoundedButton.h"
 #import "FCTabBarViewController.h"
+#import "FBSDKLoginKit.h"
+#import "FBSDKCoreKit.h"
+#import "GoogleSignIn/GoogleSignIn.h"
+#import "FCRegisterTableViewController.h"
 
 @interface FCLoginViewController ()<
-UITextFieldDelegate
+UITextFieldDelegate,
+GIDSignInDelegate,
+GIDSignInUIDelegate,
+FCRegisterTableViewControllerDelegate
 >
 
 @property (nonatomic, weak) IBOutlet FCTextField *usernameTextField;
@@ -35,9 +42,24 @@ UITextFieldDelegate
   [self registerKeyboardNotifications];
 }
 
+- (void)setupController {
+  [FCProgressHUD show];
+  if ([FIRAuth auth].currentUser) {
+    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:tabBarController animated:YES completion:nil];
+  }
+  [FCProgressHUD dismiss];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self setupController];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,6 +72,8 @@ UITextFieldDelegate
 }
 
 - (void)setupView {
+  [GIDSignIn sharedInstance].delegate = self;
+  [GIDSignIn sharedInstance].uiDelegate = self;
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
 }
@@ -72,9 +96,9 @@ UITextFieldDelegate
     [self.usernameTextField becomeFirstResponder];
   } else {
     if (![self.usernameTextField.text isValidEmail]) {
-        message = @"Please input valid email!";
+      message = @"Please input valid email!";
+      [self.usernameTextField becomeFirstResponder];
     }
-    [self.usernameTextField becomeFirstResponder];
   }
   
   if ([self.passwordTextField.text isEmpty]) {
@@ -85,7 +109,7 @@ UITextFieldDelegate
     [FCAlertController showErrorWithTitle:@"Login Failed"
                                   message:message
                          inViewController:self];
-
+    
   } else {
     completion();
   }
@@ -95,23 +119,56 @@ UITextFieldDelegate
 
 - (IBAction)loginButtonAction:(id)sender {
   [self validateLoginWithCompletion:^{
-    //TODO: Login with Firebase here
-    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
-    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:tabBarController animated:YES completion:nil];
+    [[FIRAuth auth] signInWithEmail:self.usernameTextField.text
+                           password:self.passwordTextField.text
+                         completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                           [self handleLoginWithUser:user error:error];
+                         }];
   }];
 }
 
 - (IBAction)facebookButtonAction:(id)sender {
-  
+  FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+  [loginManager logInWithReadPermissions:@[@"email",@"public_profile"]
+                      fromViewController:self
+                                 handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                   if (result.token) {
+                                     FIRAuthCredential *authCredential = [FIRFacebookAuthProvider credentialWithAccessToken:result.token.tokenString];
+                                     [[FIRAuth auth] signInWithCredential:authCredential
+                                                               completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                                                 [self handleLoginWithUser:user error:error];
+                                                               }];
+                                   } else {
+                                     
+                                   }
+                                   
+                                 }];
 }
 
 - (IBAction)googleButtonAction:(id)sender {
-  
+  [[GIDSignIn sharedInstance] signIn];
 }
 
 - (IBAction)registerButtonAction:(id)sender {
-  
+  FCRegisterTableViewController *registerViewController = [FCRegisterTableViewController viewControllerFromStoryboard];
+  registerViewController.delegate = self;
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:registerViewController];
+  navigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+  [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)handleLoginWithUser:(FIRUser *)user
+                      error:(NSError *)error {
+  if (user && !error) {
+    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:tabBarController animated:YES completion:nil];
+    
+  } else {
+    [FCAlertController showErrorWithTitle:@"Login Failed"
+                                  message:error.localizedDescription
+                         inViewController:self];
+  }
 }
 
 #pragma mark - Touch
@@ -188,5 +245,33 @@ UITextFieldDelegate
                    completion:nil];
   
 }
+
+#pragma mark - GIDSigninDelegate
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+  if (!error) {
+    FIRAuthCredential *googleCredential = [FIRGoogleAuthProvider credentialWithIDToken:user.authentication.idToken accessToken:user.authentication.accessToken];
+    [[FIRAuth auth] signInWithCredential:googleCredential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+      [self handleLoginWithUser:user error:error];
+    }];
+  } else {
+    [FCAlertController showErrorWithTitle:@"Login Failed"
+                                  message:error.localizedDescription
+                         inViewController:self];
+  }
+  
+}
+
+#pragma mark - FCRegisterTableViewController
+
+- (void)registerTableViewControllerDidFinishRegister:(FCRegisterTableViewController *)registerTableViewController {
+  FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+  tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+  [self presentViewController:tabBarController animated:YES completion:nil];
+  
+}
+
 
 @end

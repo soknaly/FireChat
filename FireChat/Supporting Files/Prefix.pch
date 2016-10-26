@@ -9,6 +9,7 @@
 #ifndef Prefix_h
 #define Prefix_h
 
+@import Firebase;
 #import "UIColor+FC.h" 
 #import "UIImage+FC.h"
 #import "UIImageView+WebCache.h"
@@ -16,5 +17,6 @@
 #import <Firebase.h>
 #import "FCAlertController.h"
 #import "NSString+FC.h"
-
+#import "FCAPIService.h"
+#import "FCProgressHUD.h"
 #endif /* Prefix_h */

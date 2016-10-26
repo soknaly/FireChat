@@ -17,6 +17,7 @@
 		6D3D636F1DBA2BD700DBBB5C /* FCRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D636E1DBA2BD700DBBB5C /* FCRoundedButton.m */; };
 		6D3D63721DBA2C7800DBBB5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D63711DBA2C7800DBBB5C /* main.m */; };
 		6D3D63771DBA3ECD00DBBB5C /* FCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */; };
+		6D7D5B281DBE695000EC45ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D7D5B271DBE695000EC45ED /* GoogleService-Info.plist */; };
 		6D8F4F311DBA84C700C44C5A /* FCSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */; };
 		6D8F4F341DBA850500C44C5A /* FCGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F331DBA850500C44C5A /* FCGroupTableViewCell.m */; };
 		6D8F4F371DBA862000C44C5A /* FCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F361DBA862000C44C5A /* FCGroup.m */; };
@@ -29,6 +30,8 @@
 		6D98A3F21DBB3E9C00A3F147 /* FCContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3F11DBB3E9C00A3F147 /* FCContactListViewController.m */; };
 		6D98A3F51DBB4CFC00A3F147 /* FCRegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3F41DBB4CFC00A3F147 /* FCRegisterTableViewController.m */; };
 		6D98A3FB1DBB583A00A3F147 /* NSString+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */; };
+		6DE7F81A1DC0D59300127C70 /* FCAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7F8191DC0D59300127C70 /* FCAPIService.m */; };
+		6DE7F81D1DC0E06A00127C70 /* FCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7F81C1DC0E06A00127C70 /* FCProgressHUD.m */; };
 		6DEE39231DBA4483004A7EFE /* AppDelegate+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */; };
 		6DEE39261DBA4B82004A7EFE /* FCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39251DBA4B82004A7EFE /* FCBaseViewController.m */; };
 		6DEE39291DBA4BC6004A7EFE /* FCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39281DBA4BC6004A7EFE /* FCLoginViewController.m */; };
@@ -66,6 +69,7 @@
 		6D3D63741DBA2CBD00DBBB5C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		6D3D63751DBA3ECD00DBBB5C /* FCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTextField.h; sourceTree = "<group>"; };
 		6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTextField.m; sourceTree = "<group>"; };
+		6D7D5B271DBE695000EC45ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6D8F4F2F1DBA84C700C44C5A /* FCSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSettingHeaderView.h; sourceTree = "<group>"; };
 		6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSettingHeaderView.m; sourceTree = "<group>"; };
 		6D8F4F321DBA850500C44C5A /* FCGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGroupTableViewCell.h; sourceTree = "<group>"; };
@@ -89,6 +93,10 @@
 		6D98A3F41DBB4CFC00A3F147 /* FCRegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCRegisterTableViewController.m; sourceTree = "<group>"; };
 		6D98A3F91DBB583A00A3F147 /* NSString+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FC.h"; sourceTree = "<group>"; };
 		6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FC.m"; sourceTree = "<group>"; };
+		6DE7F8181DC0D59300127C70 /* FCAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAPIService.h; sourceTree = "<group>"; };
+		6DE7F8191DC0D59300127C70 /* FCAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAPIService.m; sourceTree = "<group>"; };
+		6DE7F81B1DC0E06A00127C70 /* FCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProgressHUD.h; sourceTree = "<group>"; };
+		6DE7F81C1DC0E06A00127C70 /* FCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProgressHUD.m; sourceTree = "<group>"; };
 		6DEE39211DBA4483004A7EFE /* AppDelegate+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+FC.h"; sourceTree = "<group>"; };
 		6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+FC.m"; sourceTree = "<group>"; };
 		6DEE39241DBA4B82004A7EFE /* FCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBaseViewController.h; sourceTree = "<group>"; };
@@ -182,6 +190,7 @@
 		6D38E4481DB36A9800A30E88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D7D5B271DBE695000EC45ED /* GoogleService-Info.plist */,
 				6D3D63741DBA2CBD00DBBB5C /* Prefix.pch */,
 				6D3D63711DBA2C7800DBBB5C /* main.m */,
 			);
@@ -250,6 +259,7 @@
 		6D38E4621DB36AB400A30E88 /* DataAccess */ = {
 			isa = PBXGroup;
 			children = (
+				6DE7F8171DC0D57300127C70 /* Network */,
 			);
 			path = DataAccess;
 			sourceTree = "<group>";
@@ -290,6 +300,8 @@
 				6D8F4F2F1DBA84C700C44C5A /* FCSettingHeaderView.h */,
 				6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */,
 				6D8F4F381DBA89EA00C44C5A /* FCSettingHeaderView.xib */,
+				6DE7F81B1DC0E06A00127C70 /* FCProgressHUD.h */,
+				6DE7F81C1DC0E06A00127C70 /* FCProgressHUD.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +327,15 @@
 				6D38E46B1DB36DC500A30E88 /* Main.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6DE7F8171DC0D57300127C70 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6DE7F8181DC0D59300127C70 /* FCAPIService.h */,
+				6DE7F8191DC0D59300127C70 /* FCAPIService.m */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		73EC6615D750997039662B2B /* Frameworks */ = {
@@ -388,6 +409,7 @@
 			files = (
 				6D38E46C1DB36DC500A30E88 /* Main.storyboard in Resources */,
 				6D38E4581DB36A9900A30E88 /* LaunchScreen.storyboard in Resources */,
+				6D7D5B281DBE695000EC45ED /* GoogleService-Info.plist in Resources */,
 				6D38E4551DB36A9900A30E88 /* Assets.xcassets in Resources */,
 				6D8F4F391DBA89EA00C44C5A /* FCSettingHeaderView.xib in Resources */,
 			);
@@ -469,7 +491,9 @@
 				6D98A3E91DBB32AA00A3F147 /* FCChangePasswordTableViewController.m in Sources */,
 				6DEE39411DBA572E004A7EFE /* FCBaseTableViewCell.m in Sources */,
 				6D98A3FB1DBB583A00A3F147 /* NSString+FC.m in Sources */,
+				6DE7F81A1DC0D59300127C70 /* FCAPIService.m in Sources */,
 				6DEE39261DBA4B82004A7EFE /* FCBaseViewController.m in Sources */,
+				6DE7F81D1DC0E06A00127C70 /* FCProgressHUD.m in Sources */,
 				6DEE39441DBA593B004A7EFE /* UIImage+FC.m in Sources */,
 				6DEE39351DBA4C24004A7EFE /* FCTabBarViewController.m in Sources */,
 				6D98A3F51DBB4CFC00A3F147 /* FCRegisterTableViewController.m in Sources */,
