@@ -991,39 +991,8 @@
                         <sections>
                             <tableViewSection id="r0Z-xr-mwG">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="nTX-oj-UF0">
-                                        <rect key="frame" x="0.0" y="99" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nTX-oj-UF0" id="lxE-gy-Vnl">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fdI-cU-xXX">
-                                                    <rect key="frame" x="16" y="0.0" width="382" height="49"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckR-8B-db2">
-                                                    <rect key="frame" x="0.0" y="49" width="414" height="1"/>
-                                                    <color key="backgroundColor" red="0.86666667460000002" green="0.86666667460000002" blue="0.86666667460000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="adT-td-ecM"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ckR-8B-db2" firstAttribute="leading" secondItem="lxE-gy-Vnl" secondAttribute="leading" id="1IJ-SK-rAK"/>
-                                                <constraint firstItem="fdI-cU-xXX" firstAttribute="top" secondItem="lxE-gy-Vnl" secondAttribute="top" id="VDC-Qk-6kv"/>
-                                                <constraint firstAttribute="trailing" secondItem="ckR-8B-db2" secondAttribute="trailing" id="cDM-g5-ULU"/>
-                                                <constraint firstItem="fdI-cU-xXX" firstAttribute="leading" secondItem="lxE-gy-Vnl" secondAttribute="leading" constant="16" id="fNk-8E-Oym"/>
-                                                <constraint firstAttribute="bottom" secondItem="ckR-8B-db2" secondAttribute="bottom" id="hlX-IY-4AA"/>
-                                                <constraint firstItem="ckR-8B-db2" firstAttribute="top" secondItem="fdI-cU-xXX" secondAttribute="bottom" id="oJK-YZ-DIl"/>
-                                                <constraint firstAttribute="trailing" secondItem="fdI-cU-xXX" secondAttribute="trailing" constant="16" id="ylb-Kt-D7W"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="dwh-Pb-Eaz">
-                                        <rect key="frame" x="0.0" y="149" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="99" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dwh-Pb-Eaz" id="wFZ-sN-xz1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -1054,7 +1023,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Tgg-wu-1w7">
-                                        <rect key="frame" x="0.0" y="199" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="149" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tgg-wu-1w7" id="bQb-a5-Fkj">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -1096,7 +1065,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="qhQ-s3-JUd" id="ZD8-GS-BzD"/>
-                        <outlet property="currentPasswordTextField" destination="fdI-cU-xXX" id="K0r-du-Yel"/>
                         <outlet property="passwordTextField" destination="vql-MC-pf8" id="I6M-Pa-IM4"/>
                     </connections>
                 </tableViewController>
