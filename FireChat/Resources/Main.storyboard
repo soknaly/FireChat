@@ -198,13 +198,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your friend's username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UzY-S3-ELB" customClass="FCTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your friend's email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="UzY-S3-ELB" customClass="FCTextField">
                                 <rect key="frame" x="16" y="82" width="309" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="B1i-Cp-wsV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hasBottomLine" value="YES"/>
                                 </userDefinedRuntimeAttributes>
@@ -224,15 +224,69 @@
                                 <state key="disabled">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="searchButtonAction:" destination="y4b-8o-QXK" eventType="touchUpInside" id="bho-zx-bJ6"/>
+                                </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oiE-m6-pxb">
+                                <rect key="frame" x="107" y="156" width="200" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ZT-dt-2XG">
+                                        <rect key="frame" x="50" y="8" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="DdP-DG-fkD"/>
+                                            <constraint firstAttribute="height" constant="100" id="LLh-w7-rcO"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLL-Iz-QRB">
+                                        <rect key="frame" x="8" y="116" width="184" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvN-1L-cLL" customClass="FCRoundedButton">
+                                        <rect key="frame" x="50" y="149" width="100" height="30"/>
+                                        <color key="backgroundColor" red="0.16078431369999999" green="0.59607843140000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="4bQ-FL-T8W"/>
+                                            <constraint firstAttribute="height" constant="30" id="5cF-RZ-ULu"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Chat">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="OLL-Iz-QRB" firstAttribute="top" secondItem="9ZT-dt-2XG" secondAttribute="bottom" constant="8" id="23K-vL-VJw"/>
+                                    <constraint firstItem="TvN-1L-cLL" firstAttribute="top" secondItem="OLL-Iz-QRB" secondAttribute="bottom" constant="16" id="6W0-Gy-ctB"/>
+                                    <constraint firstAttribute="height" constant="200" id="8vO-58-2hS"/>
+                                    <constraint firstItem="OLL-Iz-QRB" firstAttribute="leading" secondItem="oiE-m6-pxb" secondAttribute="leading" constant="8" id="QYv-Vb-xdl"/>
+                                    <constraint firstItem="9ZT-dt-2XG" firstAttribute="centerX" secondItem="oiE-m6-pxb" secondAttribute="centerX" id="RDf-wc-gPD"/>
+                                    <constraint firstItem="9ZT-dt-2XG" firstAttribute="top" secondItem="oiE-m6-pxb" secondAttribute="top" constant="8" id="Uf3-9h-Szg"/>
+                                    <constraint firstAttribute="trailing" secondItem="OLL-Iz-QRB" secondAttribute="trailing" constant="8" id="YE3-i8-Px4"/>
+                                    <constraint firstAttribute="width" constant="200" id="ZeR-VN-4Vl"/>
+                                    <constraint firstItem="TvN-1L-cLL" firstAttribute="centerX" secondItem="oiE-m6-pxb" secondAttribute="centerX" id="frd-wH-kQF"/>
+                                </constraints>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not found 😟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9Z-ob-jCd">
+                                <rect key="frame" x="156" y="271" width="103" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="w0f-VS-jDR" secondAttribute="trailing" constant="16" id="34y-YC-ojh"/>
                             <constraint firstItem="UzY-S3-ELB" firstAttribute="leading" secondItem="iAw-YO-1nL" secondAttribute="leading" constant="16" id="RfN-Fz-qFi"/>
                             <constraint firstItem="w0f-VS-jDR" firstAttribute="leading" secondItem="UzY-S3-ELB" secondAttribute="trailing" constant="8" id="S8o-5e-lnV"/>
+                            <constraint firstItem="oiE-m6-pxb" firstAttribute="top" secondItem="UzY-S3-ELB" secondAttribute="bottom" constant="30" id="bs5-md-MBf"/>
                             <constraint firstItem="w0f-VS-jDR" firstAttribute="top" secondItem="1yB-DL-JUA" secondAttribute="bottom" constant="16" id="cOA-oq-lQE"/>
+                            <constraint firstItem="j9Z-ob-jCd" firstAttribute="centerX" secondItem="iAw-YO-1nL" secondAttribute="centerX" id="iJw-eX-ShP"/>
+                            <constraint firstItem="oiE-m6-pxb" firstAttribute="centerX" secondItem="iAw-YO-1nL" secondAttribute="centerX" id="jqW-3L-d3j"/>
                             <constraint firstItem="UzY-S3-ELB" firstAttribute="top" secondItem="1yB-DL-JUA" secondAttribute="bottom" constant="18" id="mOU-P8-nWh"/>
+                            <constraint firstItem="j9Z-ob-jCd" firstAttribute="top" secondItem="UzY-S3-ELB" secondAttribute="bottom" constant="145" id="zAB-05-wpG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Chat" id="kAd-xq-iBf">
@@ -243,7 +297,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addChatButton" destination="TvN-1L-cLL" id="Mr3-lA-bM0"/>
+                        <outlet property="notFoundLabel" destination="j9Z-ob-jCd" id="IKY-P3-Kf2"/>
+                        <outlet property="profileContainerView" destination="oiE-m6-pxb" id="KZO-2O-JgA"/>
+                        <outlet property="profileImageView" destination="9ZT-dt-2XG" id="sHs-m2-wQz"/>
                         <outlet property="searchButton" destination="w0f-VS-jDR" id="sLg-v9-5I9"/>
+                        <outlet property="usernameLabel" destination="OLL-Iz-QRB" id="1Cj-Dm-2mf"/>
                         <outlet property="usernameTextField" destination="UzY-S3-ELB" id="Baq-VT-bo9"/>
                     </connections>
                 </viewController>
