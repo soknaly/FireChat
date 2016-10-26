@@ -13,11 +13,13 @@
 #import "FBSDKLoginKit.h"
 #import "FBSDKCoreKit.h"
 #import "GoogleSignIn/GoogleSignIn.h"
+#import "FCRegisterTableViewController.h"
 
 @interface FCLoginViewController ()<
 UITextFieldDelegate,
 GIDSignInDelegate,
-GIDSignInUIDelegate
+GIDSignInUIDelegate,
+FCRegisterTableViewControllerDelegate
 >
 
 @property (nonatomic, weak) IBOutlet FCTextField *usernameTextField;
@@ -133,7 +135,11 @@ GIDSignInUIDelegate
 }
 
 - (IBAction)registerButtonAction:(id)sender {
-  
+  FCRegisterTableViewController *registerViewController = [FCRegisterTableViewController viewControllerFromStoryboard];
+  registerViewController.delegate = self;
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:registerViewController];
+  navigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+  [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)handleLoginWithUser:(FIRUser *)user
@@ -241,6 +247,15 @@ didSignInForUser:(GIDGoogleUser *)user
                          inViewController:self];
   }
   
+}
+
+#pragma mark - FCRegisterTableViewController
+
+- (void)registerTableViewControllerDidFinishRegister:(FCRegisterTableViewController *)registerTableViewController {
+  FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+  tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+  [self presentViewController:tabBarController animated:YES completion:nil];
+
 }
 
 

@@ -96,6 +96,10 @@ Copyright 2016 Google
 
 Copyright 2016 Google Inc.
 
+## FirebaseStorage
+
+Copyright 2016 Google Inc.
+
 ## GoogleAppUtilities
 
 Copyright 2015 Google Inc.
