@@ -14,4 +14,5 @@ target 'FireChat' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
+  pod 'SVProgressHUD'
 end

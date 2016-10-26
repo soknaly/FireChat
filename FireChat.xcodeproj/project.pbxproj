@@ -31,6 +31,7 @@
 		6D98A3F51DBB4CFC00A3F147 /* FCRegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3F41DBB4CFC00A3F147 /* FCRegisterTableViewController.m */; };
 		6D98A3FB1DBB583A00A3F147 /* NSString+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */; };
 		6DE7F81A1DC0D59300127C70 /* FCAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7F8191DC0D59300127C70 /* FCAPIService.m */; };
+		6DE7F81D1DC0E06A00127C70 /* FCProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE7F81C1DC0E06A00127C70 /* FCProgressHUD.m */; };
 		6DEE39231DBA4483004A7EFE /* AppDelegate+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */; };
 		6DEE39261DBA4B82004A7EFE /* FCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39251DBA4B82004A7EFE /* FCBaseViewController.m */; };
 		6DEE39291DBA4BC6004A7EFE /* FCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39281DBA4BC6004A7EFE /* FCLoginViewController.m */; };
@@ -94,6 +95,8 @@
 		6D98A3FA1DBB583A00A3F147 /* NSString+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FC.m"; sourceTree = "<group>"; };
 		6DE7F8181DC0D59300127C70 /* FCAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAPIService.h; sourceTree = "<group>"; };
 		6DE7F8191DC0D59300127C70 /* FCAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAPIService.m; sourceTree = "<group>"; };
+		6DE7F81B1DC0E06A00127C70 /* FCProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCProgressHUD.h; sourceTree = "<group>"; };
+		6DE7F81C1DC0E06A00127C70 /* FCProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCProgressHUD.m; sourceTree = "<group>"; };
 		6DEE39211DBA4483004A7EFE /* AppDelegate+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+FC.h"; sourceTree = "<group>"; };
 		6DEE39221DBA4483004A7EFE /* AppDelegate+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+FC.m"; sourceTree = "<group>"; };
 		6DEE39241DBA4B82004A7EFE /* FCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCBaseViewController.h; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 				6D8F4F2F1DBA84C700C44C5A /* FCSettingHeaderView.h */,
 				6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */,
 				6D8F4F381DBA89EA00C44C5A /* FCSettingHeaderView.xib */,
+				6DE7F81B1DC0E06A00127C70 /* FCProgressHUD.h */,
+				6DE7F81C1DC0E06A00127C70 /* FCProgressHUD.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 				6D98A3FB1DBB583A00A3F147 /* NSString+FC.m in Sources */,
 				6DE7F81A1DC0D59300127C70 /* FCAPIService.m in Sources */,
 				6DEE39261DBA4B82004A7EFE /* FCBaseViewController.m in Sources */,
+				6DE7F81D1DC0E06A00127C70 /* FCProgressHUD.m in Sources */,
 				6DEE39441DBA593B004A7EFE /* UIImage+FC.m in Sources */,
 				6DEE39351DBA4C24004A7EFE /* FCTabBarViewController.m in Sources */,
 				6D98A3F51DBB4CFC00A3F147 /* FCRegisterTableViewController.m in Sources */,

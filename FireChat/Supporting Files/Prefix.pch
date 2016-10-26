@@ -18,4 +18,5 @@
 #import "FCAlertController.h"
 #import "NSString+FC.h"
 #import "FCAPIService.h"
+#import "FCProgressHUD.h"
 #endif /* Prefix_h */

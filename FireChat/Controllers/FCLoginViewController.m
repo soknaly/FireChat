@@ -42,9 +42,24 @@ FCRegisterTableViewControllerDelegate
   [self registerKeyboardNotifications];
 }
 
+- (void)setupController {
+  [FCProgressHUD show];
+  if ([FIRAuth auth].currentUser) {
+    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
+    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:tabBarController animated:YES completion:nil];
+  }
+  [FCProgressHUD dismiss];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self setupController];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -255,7 +270,7 @@ didSignInForUser:(GIDGoogleUser *)user
   FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
   tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
   [self presentViewController:tabBarController animated:YES completion:nil];
-
+  
 }
 
 
