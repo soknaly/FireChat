@@ -19,4 +19,14 @@
   [super show];
 }
 
++ (void)showProgress:(float)progress status:(NSString *)status {
+  [self setDefaultStyle:SVProgressHUDStyleCustom];
+  [self setForegroundColor:[UIColor mainColor]];
+  [self setRingThickness:6.0];
+  [self setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+  [self setBackgroundColor:[UIColor whiteColor]];
+  [super showProgress:progress status:status];
+
+}
+
 @end

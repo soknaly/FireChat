@@ -55,8 +55,35 @@ FCSettingHeaderViewDelegate
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-  
-  //TODO: Get image and upload to Firebase
+  [picker dismissViewControllerAnimated:YES completion:nil];
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  [[FCAPIService sharedServiced] uploadImage:info[UIImagePickerControllerEditedImage]
+                                   withName:currentUser.uid
+                                   progress:^(NSProgress *progress) {
+                                     [FCProgressHUD showProgress:progress.fractionCompleted status:@"Uploading"];
+                                   }
+                                    success:^(NSURL *imageURL) {
+                                      FIRUserProfileChangeRequest *changeRequest = [currentUser profileChangeRequest];
+                                      changeRequest.photoURL = imageURL;
+                                      [changeRequest commitChangesWithCompletion:^(NSError * _Nullable error) {
+                                        [FCProgressHUD dismiss];
+                                        if (!error) {
+                                          [FCAlertController showErrorWithTitle:@"Updated Successfully"
+                                                                        message:@"Your Profile image has been updated successfully!"
+                                                               inViewController:self];
+                                        } else {
+                                          [FCAlertController showErrorWithTitle:@"Logout Failed"
+                                                                        message:error.localizedDescription
+                                                               inViewController:self];
+                                        }
+                                      }];
+                                      
+                                    }
+                                    failure:^(NSError *error) {
+                                      [FCAlertController showErrorWithTitle:@"Logout Failed"
+                                                                    message:error.localizedDescription
+                                                           inViewController:self];
+                                    }];
   
 }
 
