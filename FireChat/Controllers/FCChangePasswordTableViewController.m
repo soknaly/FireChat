@@ -38,10 +38,40 @@
   self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
 }
 
+#pragma mark - Validation 
+
+
+- (void)validateChangePassword:(void(^)())success {
+  NSString *message = nil;
+  if ([self.passwordTextField.text isEmpty]) {
+    message = @"Please input your new password";
+    [self.passwordTextField becomeFirstResponder];
+  } else if ([self.confirmPasswordTextField.text isEmpty]) {
+    message = @"Please input your confirm password";
+    [self.confirmPasswordTextField becomeFirstResponder];
+  } else if ([self.passwordTextField.text isEqualToString:self.confirmPasswordTextField.text]) {
+    message = @"Both password do not match!";
+    [self.passwordTextField becomeFirstResponder];
+  } else {
+    success();
+  }
+}
+
 #pragma mark - Actions
 
 - (void)saveBarButtonItemHandler:(id)sender {
-  //TODO: Call firebase code to change password
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  [currentUser updatePassword:self.passwordTextField.text completion:^(NSError * _Nullable error) {
+    if (error) {
+      [FCAlertController showErrorWithTitle:@"Change Password Failed"
+                                    message:error.localizedDescription
+                           inViewController:self];
+    } else {
+      [FCAlertController showErrorWithTitle:@"Change Password Succeeded" message:@"Your password has been changed successfully." inViewController:self handlerBlock:^{
+        [self.navigationController popViewControllerAnimated:YES];
+      }];
+    }
+  }];
 }
 
 @end
