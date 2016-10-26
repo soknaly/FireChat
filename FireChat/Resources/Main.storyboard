@@ -784,47 +784,12 @@
                                             <segue destination="9zv-wc-EVz" kind="show" id="Bn1-ff-CRa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="Cfk-Pn-h5C">
-                                        <rect key="frame" x="0.0" y="199" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cfk-Pn-h5C" id="rPn-IM-mJM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification" translatesAutoresizingMaskIntoConstraints="NO" id="OP6-TA-Hmm">
-                                                    <rect key="frame" x="8" y="10" width="29" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="OP6-TA-Hmm" secondAttribute="height" multiplier="1:1" id="4th-gy-iHc"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD9-Vv-eHr">
-                                                    <rect key="frame" x="357" y="9" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.16078431369999999" green="0.59607843140000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmb-NQ-Rvx">
-                                                    <rect key="frame" x="45" y="14" width="97" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="aD9-Vv-eHr" firstAttribute="centerY" secondItem="rPn-IM-mJM" secondAttribute="centerY" id="9fi-YC-lPU"/>
-                                                <constraint firstItem="bmb-NQ-Rvx" firstAttribute="centerY" secondItem="rPn-IM-mJM" secondAttribute="centerY" id="LWj-q5-fGN"/>
-                                                <constraint firstItem="OP6-TA-Hmm" firstAttribute="leading" secondItem="rPn-IM-mJM" secondAttribute="leading" constant="8" id="WfS-7M-AFx"/>
-                                                <constraint firstAttribute="trailing" secondItem="aD9-Vv-eHr" secondAttribute="trailing" constant="8" id="jiI-Yx-kRM"/>
-                                                <constraint firstItem="OP6-TA-Hmm" firstAttribute="top" secondItem="rPn-IM-mJM" secondAttribute="top" constant="10" id="rym-X6-PLc"/>
-                                                <constraint firstAttribute="bottom" secondItem="OP6-TA-Hmm" secondAttribute="bottom" constant="10" id="sDe-uu-59b"/>
-                                                <constraint firstItem="bmb-NQ-Rvx" firstAttribute="leading" secondItem="OP6-TA-Hmm" secondAttribute="trailing" constant="8" id="wK1-Wp-W3g"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="syu-hh-60M">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gyy-iJ-uZT">
-                                        <rect key="frame" x="0.0" y="285" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="235" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gyy-iJ-uZT" id="BHh-oW-wMR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -1241,7 +1206,6 @@
         <image name="group_holder" width="40" height="40"/>
         <image name="groups" width="20" height="20"/>
         <image name="menu" width="29" height="6"/>
-        <image name="notification" width="29" height="29"/>
         <image name="password" width="29" height="29"/>
         <image name="profile_default" width="60" height="60"/>
     </resources>
