@@ -49,7 +49,21 @@
 
 - (IBAction)resetButtonAction:(id)sender {
   [self validateForgetPasswordWithSuccess:^{
-    
+    [FCProgressHUD show];
+    [[FIRAuth auth] sendPasswordResetWithEmail:self.emailTextField.text completion:^(NSError * _Nullable error) {
+      [FCProgressHUD dismiss];
+      if (error) {
+        [FCAlertController showErrorWithTitle:@"Reset Password Failed"
+                                      message:error.localizedDescription
+                             inViewController:self];
+      } else {
+        [FCAlertController showErrorWithTitle:@"Reset Password Successfully"
+                                      message:@"Your reset password request has been sent. Please check your email!"
+                             inViewController:self handlerBlock:^{
+                               [self dismissViewControllerAnimated:YES completion:nil];
+                             }];
+      }
+    }];
   }];
 }
 
