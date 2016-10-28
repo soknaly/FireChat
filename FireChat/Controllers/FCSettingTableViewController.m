@@ -72,8 +72,8 @@ FCSettingHeaderViewDelegate
                          cancleHandlerBlock:nil
                           otherHandlerBlock:^{
                             NSError *error;
-                            [[FCAPIService sharedServiced] sendOfflineStatus];
-                            [[FIRAuth auth] signOut:&error];
+                            //TODO: Call sending offline status
+                            //TODO: Call singout
                             if (!error) {
                               [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
                             } else {
