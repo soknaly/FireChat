@@ -43,13 +43,6 @@ FCRegisterTableViewControllerDelegate
 }
 
 - (void)setupController {
-  [FCProgressHUD show];
-  if ([FIRAuth auth].currentUser) {
-    FCTabBarViewController *tabBarController = [FCTabBarViewController viewControllerFromStoryboard];
-    tabBarController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:tabBarController animated:YES completion:nil];
-  }
-  [FCProgressHUD dismiss];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,8 +65,6 @@ FCRegisterTableViewControllerDelegate
 }
 
 - (void)setupView {
-  [GIDSignIn sharedInstance].delegate = self;
-  [GIDSignIn sharedInstance].uiDelegate = self;
   self.usernameTextField.delegate = self;
   self.passwordTextField.delegate = self;
 }
@@ -119,46 +110,16 @@ FCRegisterTableViewControllerDelegate
 
 - (IBAction)loginButtonAction:(id)sender {
   [self validateLoginWithCompletion:^{
-    [FCProgressHUD show];
-    [[FIRAuth auth] signInWithEmail:self.usernameTextField.text
-                           password:self.passwordTextField.text
-                         completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                           [FCProgressHUD dismiss];
-                           [self handleLoginWithUser:user error:error];
-                         }];
+    //TODO: Call API to login to Firebase
   }];
 }
 
 - (IBAction)facebookButtonAction:(id)sender {
-  FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-  [loginManager logInWithReadPermissions:@[@"email",@"public_profile"]
-                      fromViewController:self
-                                 handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-                                   [FCProgressHUD show];
-                                   if (result.token) {
-                                     FIRAuthCredential *authCredential = [FIRFacebookAuthProvider credentialWithAccessToken:result.token.tokenString];
-                                     [[FIRAuth auth] signInWithCredential:authCredential
-                                                               completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                                                                 [FCProgressHUD dismiss];
-                                                                 [[FCAPIService sharedServiced] createUserWithID:user.uid
-                                                                                                     displayName:user.displayName
-                                                                                                    emailAddress:user.email
-                                                                                                        photoURL:user.photoURL];
-                                                                 [self handleLoginWithUser:user error:error];
-                                                               }];
-                                   } else {
-                                     [FCProgressHUD dismiss];
-                                     [FCAlertController showErrorWithTitle:@"Login Failed"
-                                                                   message:error.localizedDescription
-                                                          inViewController:self];
-
-                                   }
-                                   
-                                 }];
+  //TODO: Login with Facebook
 }
 
 - (IBAction)googleButtonAction:(id)sender {
-  [[GIDSignIn sharedInstance] signIn];
+  //TODO: Login with Google+
 }
 
 - (IBAction)registerButtonAction:(id)sender {
@@ -263,25 +224,7 @@ FCRegisterTableViewControllerDelegate
 - (void)signIn:(GIDSignIn *)signIn
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
-  if (!error) {
-    [FCProgressHUD show];
-    FIRAuthCredential *googleCredential = [FIRGoogleAuthProvider credentialWithIDToken:user.authentication.idToken accessToken:user.authentication.accessToken];
-    [[FIRAuth auth] signInWithCredential:googleCredential
-                              completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                                [FCProgressHUD dismiss];
-                                [[FCAPIService sharedServiced] createUserWithID:user.uid
-                                                                    displayName:user.displayName
-                                                                   emailAddress:user.email
-                                                                       photoURL:user.photoURL];
-                                [self handleLoginWithUser:user
-                                                    error:error];
-                              }];
-  } else {
-    [FCAlertController showErrorWithTitle:@"Login Failed"
-                                  message:error.localizedDescription
-                         inViewController:self];
-  }
-  
+  //TODO: Handle when user finished signin with Google+
 }
 
 #pragma mark - FCRegisterTableViewController
