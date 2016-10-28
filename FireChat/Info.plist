@@ -54,6 +54,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>FireChat attempts to open your camera to use to send image.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>FireChat attempts to open your photo library to use to send image.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

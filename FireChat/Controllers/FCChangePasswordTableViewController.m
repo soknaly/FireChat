@@ -38,7 +38,7 @@
   self.navigationItem.rightBarButtonItem = self.saveBarButtonItem;
 }
 
-#pragma mark - Validation 
+#pragma mark - Validation
 
 
 - (void)validateChangePassword:(void(^)())success {
@@ -61,15 +61,19 @@
 
 - (void)saveBarButtonItemHandler:(id)sender {
   FIRUser *currentUser = [FIRAuth auth].currentUser;
+  [FCProgressHUD show];
   [currentUser updatePassword:self.passwordTextField.text completion:^(NSError * _Nullable error) {
+    [FCProgressHUD dismiss];
     if (error) {
       [FCAlertController showErrorWithTitle:@"Change Password Failed"
                                     message:error.localizedDescription
                            inViewController:self];
     } else {
-      [FCAlertController showErrorWithTitle:@"Change Password Succeeded" message:@"Your password has been changed successfully." inViewController:self handlerBlock:^{
-        [self.navigationController popViewControllerAnimated:YES];
-      }];
+      [FCAlertController showErrorWithTitle:@"Change Password Succeeded"
+                                    message:@"Your password has been changed successfully."
+                           inViewController:self handlerBlock:^{
+                             [self.navigationController popViewControllerAnimated:YES];
+                           }];
     }
   }];
 }

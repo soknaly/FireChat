@@ -7,9 +7,12 @@
 //
 
 #import "FCMessagesViewController.h"
+#import "FCMessage.h"
 #import "JSQMessage.h"
+#import "FCPhotoMediaItem.h"
 #import "JSQMessagesBubbleImage.h"
 #import "JSQMessagesBubbleImageFactory.h"
+#import "SDImageCache.h"
 
 static NSString * const kJSQDemoAvatarDisplayNameDuke = @"Duke";
 static NSString * const kJSQDemoAvatarDisplayNameSokna = @"Sokna Ly";
@@ -22,9 +25,13 @@ UIImagePickerControllerDelegate,
 UINavigationControllerDelegate
 >
 
-@property (nonatomic, strong) NSArray<JSQMessage *>* messages;
+@property (nonatomic, strong) FCUser *currentUser;
+
+@property (nonatomic, strong) NSMutableArray<FCMessage *>* messages;
 
 @property (nonatomic, strong) NSDictionary<NSString *,NSString *>* images;
+
+@property (nonatomic, strong) NSTimer *typingTimer;
 
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
 
@@ -34,78 +41,80 @@ UINavigationControllerDelegate
 
 @implementation FCMessagesViewController
 
+- (FCUser *)currentUser {
+  if (!_currentUser) {
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    _currentUser = [[FCUser alloc] init];
+    _currentUser.uid = currentUser.uid;
+    _currentUser.displayName = currentUser.displayName;
+    _currentUser.emailAddress = currentUser.email;
+    _currentUser.photoURL = currentUser.photoURL;
+  }
+  return _currentUser;
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.title = self.chat.recipient.displayName;
-  self.senderId = kJSQDemoAvatarIdSokna;
-  self.images = @{kJSQDemoAvatarIdDuke:@"https://scontent-hkg3-1.xx.fbcdn.net/v/t1.0-9/14485073_10208554229386265_902072082399694097_n.jpg?oh=2b3d043938c47b7edf48a602147fbd0d&oe=589FB5A9",
-                  kJSQDemoAvatarIdSokna:@"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/5/005/088/08a/0b388f2.jpg"};
-  self.senderDisplayName = kJSQDemoAvatarDisplayNameSokna;
+  self.senderId = self.currentUser.uid;
+  self.senderDisplayName = self.currentUser.uid;
+  self.inputToolbar.contentView.textView.delegate = self;
   JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
   self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor messageBubbleLightGrayColor]];
   self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor mainColor]];
-  [self setupMockData];
+  [self setupMessage];
 }
 
-- (void)setupMockData {
-  self.messages = [[NSMutableArray alloc] initWithObjects:
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdDuke
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameDuke
-                                                   date:[NSDate distantPast]
-                                                   text:@"Hey bro!"],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdDuke
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameDuke
-                                                   date:[NSDate distantPast]
-                                                   text:@"Are you going to join GDG DevFest Cambodia 2016?"],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdSokna
-                                      senderDisplayName:kJSQDemoAvatarIdSokna
-                                                   date:[NSDate distantPast]
-                                                   text:@"Hi bro!"],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdSokna
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameSokna
-                                                   date:[NSDate date]
-                                                   text:@"Yes sure! I'm going to have 3 hours code-lab about creating iOS chat app with firebase."],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdSokna
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameSokna
-                                                   date:[NSDate date]
-                                                   text:@"It is going to be awesome"],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdDuke
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameDuke
-                                                   date:[NSDate date]
-                                                   text:@"Oh really? It sounds interesting."],
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdDuke
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameDuke
-                                                   date:[NSDate distantPast]
-                                                   text:@"I will join your session. When bro?"],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdSokna
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameSokna
-                                                   date:[NSDate distantPast]
-                                                   text:@"Great! It's going to be Saturday from 09:30AM to 12:00PM."],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdDuke
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameDuke
-                                                   date:[NSDate distantPast]
-                                                   text:@"Ok then! I will invite my friends to join too."],
-                   
-                   [[JSQMessage alloc] initWithSenderId:kJSQDemoAvatarIdSokna
-                                      senderDisplayName:kJSQDemoAvatarDisplayNameSokna
-                                                   date:[NSDate date]
-                                                   text:@"I'm glad to hear that."],
-                   nil];
+- (void)setupMessage {
+  self.messages = [NSMutableArray array];
+  FIRDatabase *database = [FIRDatabase database];
+  FIRDatabaseReference *messagesRef = [[database referenceWithPath:@"messages"] child:self.chat.uid];
+  [messagesRef observeEventType:FIRDataEventTypeChildAdded
+                      withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                        NSString *senderID = snapshot.value[@"senderID"];
+                        FCUser *user = nil;
+                        if ([senderID isEqualToString:self.senderId]) {
+                          user = self.currentUser;
+                        } else {
+                          user = self.chat.recipient;
+                        }
+                        FCMessage *message = nil;
+                        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:labs([snapshot.value[@"timestamp"] integerValue])];
+                        if ([snapshot.value[@"isMedia"] boolValue]) {
+                          FCPhotoMediaItem *photoItem = [[FCPhotoMediaItem alloc] initWithURL:[NSURL URLWithString:snapshot.value[@"message"]]];
+                          message = [[FCMessage alloc] initWithSenderId:snapshot.value[@"senderID"]
+                                                      senderDisplayName:self.senderDisplayName
+                                                                   date:date
+                                                                  media:photoItem];
+                        } else {
+                          message = [[FCMessage alloc] initWithUser:user
+                                                               date:date
+                                                               text:snapshot.value[@"message"]];
+                        }
+                        
+                        [self.messages addObject:message];
+                        [self finishReceivingMessageAnimated:YES];
+                      }];
+  
+  [[FCAPIService sharedServiced] observeTypingStatusForChat:self.chat
+                                                actionBlock:^(BOOL isTyping) {
+                                                  if (isTyping) {
+                                                    self.showTypingIndicator = YES;
+                                                    [self scrollToBottomAnimated:YES];
+                                                  } else {
+                                                    self.showTypingIndicator = NO;
+                                                  }
+                                                }];
 }
+
+#pragma mark - CollectionView DataSource
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
   return [self.messages objectAtIndex:indexPath.item];
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath {
- 
+  
   JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
   
   if ([message.senderId isEqualToString:self.senderId]) {
@@ -122,11 +131,11 @@ UINavigationControllerDelegate
 
 
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
+  
   JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
   
-
-  JSQMessage *msg = [self.messages objectAtIndex:indexPath.item];
+  
+  FCMessage *msg = [self.messages objectAtIndex:indexPath.item];
   
   if (!msg.isMediaMessage) {
     
@@ -140,9 +149,15 @@ UINavigationControllerDelegate
     cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
                                           NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
   }
-  NSString *imageUrl = self.images[msg.senderId];
+  NSURL *imageUrl = nil;
+  if ([msg.senderId isEqualToString:self.senderId]) {
+    imageUrl = self.currentUser.photoURL;
+  } else {
+    imageUrl = self.chat.recipient.photoURL;
+  }
   cell.avatarImageView.layer.cornerRadius = CGRectGetWidth(cell.avatarImageView.frame)/2;
-  [cell.avatarImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]
+  cell.avatarImageView.layer.masksToBounds = YES;
+  [cell.avatarImageView sd_setImageWithURL:imageUrl
                           placeholderImage:[UIImage profilePlaceholderImage]];
   return cell;
 }
@@ -150,6 +165,60 @@ UINavigationControllerDelegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
   return self.messages.count;
+}
+
+#pragma mark -
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+  [self.inputToolbar toggleSendButtonEnabled];
+  if (self.typingTimer) {
+    [self.typingTimer invalidate];
+    self.typingTimer = nil;
+  } else {
+    [[FCAPIService sharedServiced] sendTypingStatusForChat:self.chat];
+  }
+  self.typingTimer = [NSTimer scheduledTimerWithTimeInterval:4.0
+                                                      target:self
+                                                    selector:@selector(stopSendingUserTpyingIfNeeded)
+                                                    userInfo:nil
+                                                     repeats:NO];
+  
+  return YES;
+}
+
+- (void)stopSendingUserTpyingIfNeeded {
+  [self.typingTimer invalidate];
+  self.typingTimer = nil;
+  [[FCAPIService sharedServiced] sendStopTypingStatusForChat:self.chat];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+  UIImage *image = info[UIImagePickerControllerEditedImage];
+  [picker dismissViewControllerAnimated:YES completion:nil];
+  [[FCAPIService sharedServiced] uploadImage:image
+                                    withName:[NSString stringWithFormat:@"%f",round([NSDate timeIntervalSinceReferenceDate])]
+                                    progress:^(NSProgress *progress) {
+                                      [FCProgressHUD showProgress:progress.fractionCompleted status:@"Uploading Image"];
+                                    }
+                                     success:^(NSURL *imageURL) {
+                                       [FCProgressHUD dismiss];
+                                       NSDate *nowDate = [NSDate date];
+                                       [[FCAPIService sharedServiced] sendMessageWithText:imageURL.absoluteString
+                                                                                 senderID:self.senderId
+                                                                                     date:nowDate
+                                                                                  isMedia:YES
+                                                                                  forChat:self.chat];
+                                       [self finishSendingMessage];
+                                       
+                                     }
+                                     failure:^(NSError *error) {
+                                       
+                                     }];
 }
 
 #pragma mark - JSQInputToolbarDelegate
@@ -160,8 +229,12 @@ UINavigationControllerDelegate
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date {
   
-  //TODO: Send message to firebase
-  
+  [[FCAPIService sharedServiced] sendMessageWithText:text
+                                            senderID:senderId
+                                                date:date
+                                             isMedia:NO
+                                             forChat:self.chat];
+  [self finishSendingMessageAnimated:YES];
 }
 
 - (void)didPressAccessoryButton:(UIButton *)sender {

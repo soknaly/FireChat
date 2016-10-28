@@ -10,7 +10,9 @@
 
 @interface FCMessage : JSQMessage
 
-- (instancetype)initWithUser:(FIRUser *)user
+@property (nonatomic, strong) NSString *uid;
+
+- (instancetype)initWithUser:(FCUser *)user
                         date:(NSDate *)date
                         text:(NSString *)text;
 

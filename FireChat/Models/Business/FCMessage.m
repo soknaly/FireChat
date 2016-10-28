@@ -10,16 +10,14 @@
 
 @implementation FCMessage
 
-- (instancetype)initWithChat:(FIRUser *)user
+- (instancetype)initWithUser:(FCUser *)user
                         date:(NSDate *)date
                         text:(NSString *)text {
-  
   self = [super initWithSenderId:user.uid
                senderDisplayName:user.displayName
                             date:date
                             text:text];
   return self;
-  
 }
 
 @end

@@ -14,4 +14,9 @@
 
 @implementation FCTabBarViewController
 
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [[FCAPIService sharedServiced] sendOnlineStatus];
+}
+
 @end

@@ -81,9 +81,15 @@ UITextFieldDelegate
 }
 
 - (IBAction)addChatButtonAction:(id)sender {
-  [[FCAPIService sharedServiced] addChatWithUser:self.user success:^(FCChat *chat) {
-    [self.delegate addChatViewController:self didAddChat:chat];
-  }];
+  [[FCAPIService sharedServiced] addChatWithUser:self.user
+                                         success:^(FCChat *chat) {
+                                           [self.delegate addChatViewController:self didAddChat:chat];
+                                         }
+                                         failure:^(NSError *error) {
+                                           [FCAlertController showErrorWithTitle:@"Add Chat Failed"
+                                                                         message:error.localizedDescription
+                                                                inViewController:self];
+                                         }];
 }
 #pragma mark - UITextFieldDelegate
 

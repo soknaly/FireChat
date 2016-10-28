@@ -119,9 +119,11 @@ FCRegisterTableViewControllerDelegate
 
 - (IBAction)loginButtonAction:(id)sender {
   [self validateLoginWithCompletion:^{
+    [FCProgressHUD show];
     [[FIRAuth auth] signInWithEmail:self.usernameTextField.text
                            password:self.passwordTextField.text
                          completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                           [FCProgressHUD dismiss];
                            [self handleLoginWithUser:user error:error];
                          }];
   }];
@@ -132,10 +134,12 @@ FCRegisterTableViewControllerDelegate
   [loginManager logInWithReadPermissions:@[@"email",@"public_profile"]
                       fromViewController:self
                                  handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                   [FCProgressHUD show];
                                    if (result.token) {
                                      FIRAuthCredential *authCredential = [FIRFacebookAuthProvider credentialWithAccessToken:result.token.tokenString];
                                      [[FIRAuth auth] signInWithCredential:authCredential
                                                                completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                                                 [FCProgressHUD dismiss];
                                                                  [[FCAPIService sharedServiced] createUserWithID:user.uid
                                                                                                      displayName:user.displayName
                                                                                                     emailAddress:user.email
@@ -143,7 +147,11 @@ FCRegisterTableViewControllerDelegate
                                                                  [self handleLoginWithUser:user error:error];
                                                                }];
                                    } else {
-                                     
+                                     [FCProgressHUD dismiss];
+                                     [FCAlertController showErrorWithTitle:@"Login Failed"
+                                                                   message:error.localizedDescription
+                                                          inViewController:self];
+
                                    }
                                    
                                  }];
@@ -256,9 +264,11 @@ FCRegisterTableViewControllerDelegate
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
   if (!error) {
+    [FCProgressHUD show];
     FIRAuthCredential *googleCredential = [FIRGoogleAuthProvider credentialWithIDToken:user.authentication.idToken accessToken:user.authentication.accessToken];
     [[FIRAuth auth] signInWithCredential:googleCredential
                               completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+                                [FCProgressHUD dismiss];
                                 [[FCAPIService sharedServiced] createUserWithID:user.uid
                                                                     displayName:user.displayName
                                                                    emailAddress:user.email

@@ -17,6 +17,7 @@
 		6D3D636F1DBA2BD700DBBB5C /* FCRoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D636E1DBA2BD700DBBB5C /* FCRoundedButton.m */; };
 		6D3D63721DBA2C7800DBBB5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D63711DBA2C7800DBBB5C /* main.m */; };
 		6D3D63771DBA3ECD00DBBB5C /* FCTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */; };
+		6D6F80481DC3AFE900CE5102 /* FCPhotoMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6F80471DC3AFE900CE5102 /* FCPhotoMediaItem.m */; };
 		6D7D5B281DBE695000EC45ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D7D5B271DBE695000EC45ED /* GoogleService-Info.plist */; };
 		6D8F4F311DBA84C700C44C5A /* FCSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */; };
 		6D8F4F341DBA850500C44C5A /* FCGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8F4F331DBA850500C44C5A /* FCGroupTableViewCell.m */; };
@@ -70,6 +71,8 @@
 		6D3D63741DBA2CBD00DBBB5C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		6D3D63751DBA3ECD00DBBB5C /* FCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCTextField.h; sourceTree = "<group>"; };
 		6D3D63761DBA3ECD00DBBB5C /* FCTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCTextField.m; sourceTree = "<group>"; };
+		6D6F80461DC3AFE900CE5102 /* FCPhotoMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCPhotoMediaItem.h; sourceTree = "<group>"; };
+		6D6F80471DC3AFE900CE5102 /* FCPhotoMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCPhotoMediaItem.m; sourceTree = "<group>"; };
 		6D7D5B271DBE695000EC45ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6D8F4F2F1DBA84C700C44C5A /* FCSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCSettingHeaderView.h; sourceTree = "<group>"; };
 		6D8F4F301DBA84C700C44C5A /* FCSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCSettingHeaderView.m; sourceTree = "<group>"; };
@@ -257,6 +260,8 @@
 				6DEE39491DBA6AA9004A7EFE /* FCMessage.m */,
 				6DC2528A1DC1095500DC7FF7 /* FCUser.h */,
 				6DC2528B1DC1095500DC7FF7 /* FCUser.m */,
+				6D6F80461DC3AFE900CE5102 /* FCPhotoMediaItem.h */,
+				6D6F80471DC3AFE900CE5102 /* FCPhotoMediaItem.m */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				TargetAttributes = {
 					6D38E4441DB36A9800A30E88 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = XRJJ9X9K2D;
 					};
 				};
 			};
@@ -510,6 +516,7 @@
 				6DEE39321DBA4BF8004A7EFE /* FCSettingTableViewController.m in Sources */,
 				6D38E4691DB36B5E00A30E88 /* FCHomeViewController.m in Sources */,
 				6D8F4F311DBA84C700C44C5A /* FCSettingHeaderView.m in Sources */,
+				6D6F80481DC3AFE900CE5102 /* FCPhotoMediaItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,12 +621,14 @@
 			baseConfigurationReference = 288978DE991F85CCEA13BF59 /* Pods-FireChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FireChat/Supporting Files/Prefix.pch";
 				INFOPLIST_FILE = FireChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.soknaly.FireChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5a26004e-d953-42e8-b22e-afbe0b648347";
 			};
 			name = Debug;
 		};
@@ -628,12 +637,14 @@
 			baseConfigurationReference = 61D3D3038F6D46BAD6EF3B7C /* Pods-FireChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FireChat/Supporting Files/Prefix.pch";
 				INFOPLIST_FILE = FireChat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.soknaly.FireChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5a26004e-d953-42e8-b22e-afbe0b648347";
 			};
 			name = Release;
 		};

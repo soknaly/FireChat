@@ -18,10 +18,13 @@
         didAddChat:(FCChat *)chat;
 
 - (void)apiService:(FCAPIService *)apiService
-        didRemoveChat:(FCChat *)chat;
+     didUpdateChat:(FCChat *)chat;
 
 - (void)apiService:(FCAPIService *)apiService
-        didMoveChat:(FCChat *)chat;
+     didRemoveChat:(FCChat *)chat;
+
+- (void)apiService:(FCAPIService *)apiService
+       didMoveChat:(FCChat *)chat;
 
 @end
 
@@ -49,13 +52,39 @@ typedef void (^FCErrorResultBlock)(NSError *error);
             emailAddress:(NSString *)emailAddress
                 photoURL:(NSURL *)photoURL;
 
+- (void)updateCurrentUserWithFirstName:(NSString *)firstName
+                              lastName:(NSString *)lastName
+                                 email:(NSString *)email
+                               success:(void(^)())success
+                               failure:(FCErrorResultBlock)failure;
+
 - (void)searchUserWithEmail:(NSString *)email
                     success:(void(^)(FCUser *user))success
                     failure:(FCErrorResultBlock)failure;
 
 - (void)addChatWithUser:(FCUser *)user
-                success:(void(^)(FCChat *))success;
+                success:(void(^)(FCChat *))success
+                failure:(FCErrorResultBlock)failure;
 
 - (void)getChatListForCurrentUserWithDelegate:(id<FCAPIServiceDelegate>)delegate;
+
+- (void)removeChat:(FCChat *)chat;
+
+- (void)sendMessageWithText:(NSString *)text
+                   senderID:(NSString *)senderID
+                       date:(NSDate *)date
+                    isMedia:(BOOL)isMedia
+                    forChat:(FCChat *)chat;
+
+- (void)observeTypingStatusForChat:(FCChat *)chat
+                       actionBlock:(void(^)(BOOL isTyping))actionBlock;
+
+- (void)sendOnlineStatus;
+
+- (void)sendOfflineStatus;
+
+- (void)sendTypingStatusForChat:(FCChat *)chat;
+
+- (void)sendStopTypingStatusForChat:(FCChat *)chat;
 
 @end

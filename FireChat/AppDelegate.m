@@ -22,6 +22,7 @@
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self setupAppearance];
   [FIRApp configure];
+  [FIRDatabase database].persistenceEnabled = YES;
   [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
@@ -43,6 +44,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
                                                   annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
   return facebookHandled || googleHandled;
 
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [[FCAPIService sharedServiced] sendOnlineStatus];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+  [[FCAPIService sharedServiced] sendOfflineStatus];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+  [[FCAPIService sharedServiced] sendOnlineStatus];
 }
 
 @end

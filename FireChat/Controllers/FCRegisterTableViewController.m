@@ -100,6 +100,7 @@ UITextFieldDelegate
 
 - (IBAction)createAccountButtonAction:(id)sender {
   [self validateRegisterWithCompletion:^{
+    [FCProgressHUD show];
     [[FIRAuth auth] createUserWithEmail:self.emailAddressTextField.text
                                password:self.passwordTextField.text
                              completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
@@ -111,6 +112,7 @@ UITextFieldDelegate
                                                                       changeRequest.displayName = [NSString stringWithFormat:@"%@ %@", self.firstNameTextField.text, self.lastNameTextField.text];
                                                                       changeRequest.photoURL = imageURL;
                                                                       [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
+                                                                        [FCProgressHUD dismiss];
                                                                         if (error) {
                                                                           [FCAlertController showErrorWithTitle:@"Register Failed"
                                                                                                         message:error.localizedDescription
@@ -126,9 +128,13 @@ UITextFieldDelegate
                                                                       }];
                                                                     }
                                                                     failure:^(NSError *error) {
-                                                                      
+                                                                      [FCProgressHUD dismiss];
+                                                                      [FCAlertController showErrorWithTitle:@"Register Failed"
+                                                                                                    message:error.localizedDescription
+                                                                                           inViewController:self];
                                                                     }];
                                } else {
+                                 [FCProgressHUD dismiss];
                                  [FCAlertController showErrorWithTitle:@"Register Failed"
                                                                message:error.localizedDescription
                                                       inViewController:self];

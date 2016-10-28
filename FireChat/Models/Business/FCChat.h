@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) NSString *lastMessage;
 
+@property (nonatomic, strong) NSString *lastSenderID;
+
 @property (nonatomic, strong) FCUser *recipient;
 
 @end

@@ -18,4 +18,6 @@
 
 @property (nonatomic, strong) NSString *uid;
 
+@property (nonatomic) BOOL online;
+
 @end

@@ -99,6 +99,7 @@ FCSettingHeaderViewDelegate
                          cancleHandlerBlock:nil
                           otherHandlerBlock:^{
                             NSError *error;
+                            [[FCAPIService sharedServiced] sendOfflineStatus];
                             [[FIRAuth auth] signOut:&error];
                             if (!error) {
                               [self.tabBarController dismissViewControllerAnimated:YES completion:nil];
@@ -110,6 +111,13 @@ FCSettingHeaderViewDelegate
                             
                           }];
   }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+  if (section == 0) {
+    return 90;
+  }
+  return 10;
 }
 
 #pragma mark - FCSettingHeaderViewDelegate

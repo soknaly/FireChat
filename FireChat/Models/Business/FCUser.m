@@ -22,6 +22,7 @@
      _photoURL = [NSURL URLWithString:photoURLString];
     }
     _uid = dictionary[@"uid"];
+    _online = [dictionary[@"online"] boolValue];
     
   }
   return self;
