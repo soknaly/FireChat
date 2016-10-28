@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [[FCAPIService sharedServiced] sendOnlineStatus];
+  //TODO: Call sending online status
 }
 
 @end
