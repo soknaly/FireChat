@@ -49,6 +49,7 @@
 		6DEE39471DBA6A18004A7EFE /* FCMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39461DBA6A18004A7EFE /* FCMessagesViewController.m */; };
 		6DEE394A1DBA6AA9004A7EFE /* FCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE39491DBA6AA9004A7EFE /* FCMessage.m */; };
 		6DEE394D1DBA7C2F004A7EFE /* UIViewController+FC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEE394C1DBA7C2F004A7EFE /* UIViewController+FC.m */; };
+		6DFBE2541DC41120007F37F1 /* FCForgotPasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DFBE2531DC41120007F37F1 /* FCForgotPasswordTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,6 +134,8 @@
 		6DEE39491DBA6AA9004A7EFE /* FCMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCMessage.m; sourceTree = "<group>"; };
 		6DEE394B1DBA7C2F004A7EFE /* UIViewController+FC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FC.h"; sourceTree = "<group>"; };
 		6DEE394C1DBA7C2F004A7EFE /* UIViewController+FC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FC.m"; sourceTree = "<group>"; };
+		6DFBE2521DC41120007F37F1 /* FCForgotPasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCForgotPasswordTableViewController.h; sourceTree = "<group>"; };
+		6DFBE2531DC41120007F37F1 /* FCForgotPasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCForgotPasswordTableViewController.m; sourceTree = "<group>"; };
 		8B5CC8B92A182F9627708111 /* Pods_FireChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FireChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,6 +237,8 @@
 				6D98A3EB1DBB369A00A3F147 /* FCEditProfileTableViewController.m */,
 				6D98A3F01DBB3E9C00A3F147 /* FCContactListViewController.h */,
 				6D98A3F11DBB3E9C00A3F147 /* FCContactListViewController.m */,
+				6DFBE2521DC41120007F37F1 /* FCForgotPasswordTableViewController.h */,
+				6DFBE2531DC41120007F37F1 /* FCForgotPasswordTableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				6DEE39291DBA4BC6004A7EFE /* FCLoginViewController.m in Sources */,
 				6DEE393E1DBA5625004A7EFE /* FCChatTableViewCell.m in Sources */,
 				6D38E44D1DB36A9800A30E88 /* AppDelegate.m in Sources */,
+				6DFBE2541DC41120007F37F1 /* FCForgotPasswordTableViewController.m in Sources */,
 				6DEE39321DBA4BF8004A7EFE /* FCSettingTableViewController.m in Sources */,
 				6D38E4691DB36B5E00A30E88 /* FCHomeViewController.m in Sources */,
 				6D8F4F311DBA84C700C44C5A /* FCSettingHeaderView.m in Sources */,
