@@ -63,27 +63,7 @@
                                success:(void (^)())success
                                failure:(FCErrorResultBlock)failure {
   
-  FIRUser *currentUser = [FIRAuth auth].currentUser;
-  FIRUserProfileChangeRequest *changeRequest = [currentUser profileChangeRequest];
-  changeRequest.displayName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-  [changeRequest commitChangesWithCompletion:^(NSError * _Nullable error) {
-    if (!error) {
-      [currentUser updateEmail:email
-                    completion:^(NSError * _Nullable error) {
-                      if (!error) {
-                        [self createUserWithID:currentUser.uid
-                                   displayName:changeRequest.displayName
-                                  emailAddress:email
-                                      photoURL:nil];
-                        success();
-                      } else {
-                        failure(error);
-                      }
-                    }];
-    } else {
-      failure(error);
-    }
-  }];
+  
 }
 
 

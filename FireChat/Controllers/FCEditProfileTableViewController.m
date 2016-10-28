@@ -78,25 +78,7 @@
 
 - (void)saveBarButtonItemHandler:(id)sender {
   [self validateEditProfileWithCompletion:^{
-    [FCProgressHUD show];
-    [[FCAPIService sharedServiced] updateCurrentUserWithFirstName:self.firstNameTextField.text
-                                                         lastName:self.lastNameTextField.text
-                                                            email:self.emailAddressTextField.text
-                                                          success:^{
-                                                            [FCProgressHUD dismiss];
-                                                            [FCAlertController showErrorWithTitle:@"Edit Profile Successfully"
-                                                                                          message:@"Your Profile has been edited"
-                                                                                 inViewController:self
-                                                                                     handlerBlock:^{
-                                                                                       [self.navigationController popViewControllerAnimated:YES];
-                                                                                     }];
-                                                          }
-                                                          failure:^(NSError *error) {
-                                                            [FCProgressHUD dismiss];
-                                                            [FCAlertController showErrorWithTitle:@"Edit Profile Failed"
-                                                                                          message:error.localizedDescription
-                                                                                 inViewController:self];
-                                                          }];
+    //TODO: Call API to update profile
   }];
 }
 
