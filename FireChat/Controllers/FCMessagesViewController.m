@@ -67,34 +67,7 @@ UINavigationControllerDelegate
 
 - (void)setupMessage {
   self.messages = [NSMutableArray array];
-  FIRDatabase *database = [FIRDatabase database];
-  FIRDatabaseReference *messagesRef = [[database referenceWithPath:@"messages"] child:self.chat.uid];
-  [messagesRef observeEventType:FIRDataEventTypeChildAdded
-                      withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                        NSString *senderID = snapshot.value[@"senderID"];
-                        FCUser *user = nil;
-                        if ([senderID isEqualToString:self.senderId]) {
-                          user = self.currentUser;
-                        } else {
-                          user = self.chat.recipient;
-                        }
-                        FCMessage *message = nil;
-                        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:labs([snapshot.value[@"timestamp"] integerValue])];
-                        if ([snapshot.value[@"isMedia"] boolValue]) {
-                          FCPhotoMediaItem *photoItem = [[FCPhotoMediaItem alloc] initWithURL:[NSURL URLWithString:snapshot.value[@"message"]]];
-                          message = [[FCMessage alloc] initWithSenderId:snapshot.value[@"senderID"]
-                                                      senderDisplayName:self.senderDisplayName
-                                                                   date:date
-                                                                  media:photoItem];
-                        } else {
-                          message = [[FCMessage alloc] initWithUser:user
-                                                               date:date
-                                                               text:snapshot.value[@"message"]];
-                        }
-                        
-                        [self.messages addObject:message];
-                        [self finishReceivingMessageAnimated:YES];
-                      }];
+  //TODO: Write to get message for self.chat
   
   //TODO: Add typing status observe
 }
