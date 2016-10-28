@@ -96,15 +96,7 @@ UINavigationControllerDelegate
                         [self finishReceivingMessageAnimated:YES];
                       }];
   
-  [[FCAPIService sharedServiced] observeTypingStatusForChat:self.chat
-                                                actionBlock:^(BOOL isTyping) {
-                                                  if (isTyping) {
-                                                    self.showTypingIndicator = YES;
-                                                    [self scrollToBottomAnimated:YES];
-                                                  } else {
-                                                    self.showTypingIndicator = NO;
-                                                  }
-                                                }];
+  //TODO: Add typing status observe
 }
 
 #pragma mark - CollectionView DataSource
@@ -177,7 +169,7 @@ UINavigationControllerDelegate
     [self.typingTimer invalidate];
     self.typingTimer = nil;
   } else {
-    [[FCAPIService sharedServiced] sendTypingStatusForChat:self.chat];
+    //TODO: Call sending typing status
   }
   self.typingTimer = [NSTimer scheduledTimerWithTimeInterval:4.0
                                                       target:self
@@ -191,7 +183,7 @@ UINavigationControllerDelegate
 - (void)stopSendingUserTpyingIfNeeded {
   [self.typingTimer invalidate];
   self.typingTimer = nil;
-  [[FCAPIService sharedServiced] sendStopTypingStatusForChat:self.chat];
+  //TODO: Call stop sending typing status
 }
 
 #pragma mark - UIImagePickerControllerDelegate
