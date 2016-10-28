@@ -66,30 +66,11 @@ UITextFieldDelegate
 }
 
 - (IBAction)searchButtonAction:(id)sender {
-  [FCProgressHUD show];
-  [[FCAPIService sharedServiced] searchUserWithEmail:self.usernameTextField.text
-                                             success:^(FCUser *user) {
-                                               [FCProgressHUD dismiss];
-                                               [self populateProfileViewWithUser:user];
-                                             }
-                                             failure:^(NSError *error) {
-                                               [FCProgressHUD dismiss];
-                                               [FCAlertController showErrorWithTitle:@"Search Failed"
-                                                                             message:error.localizedDescription
-                                                                    inViewController:self];
-                                             }];
+  
 }
 
 - (IBAction)addChatButtonAction:(id)sender {
-  [[FCAPIService sharedServiced] addChatWithUser:self.user
-                                         success:^(FCChat *chat) {
-                                           [self.delegate addChatViewController:self didAddChat:chat];
-                                         }
-                                         failure:^(NSError *error) {
-                                           [FCAlertController showErrorWithTitle:@"Add Chat Failed"
-                                                                         message:error.localizedDescription
-                                                                inViewController:self];
-                                         }];
+
 }
 #pragma mark - UITextFieldDelegate
 
