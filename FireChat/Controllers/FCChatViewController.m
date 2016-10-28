@@ -37,7 +37,6 @@ FCAddChatViewControllerDelegate
 
 - (void)setupData {
   self.chats = [NSMutableArray array];
-  [[FCAPIService sharedServiced] getChatListForCurrentUserWithDelegate:self];
 }
 
 #pragma mark - Views
@@ -95,39 +94,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark - FCAPIServiceDelegate
 
 - (void)apiService:(FCAPIService *)apiService didAddChat:(FCChat *)chat {
-  [self.tableView beginUpdates];
-  [self.chats addObject:chat];
-  NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:self.chats.count > 1 ?  : self.chats.count - 1 inSection:0];
-  [self.tableView insertRowsAtIndexPaths:@[lastIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-  [self.tableView endUpdates];
+ 
 }
 
 - (void)apiService:(FCAPIService *)apiService didUpdateChat:(FCChat *)chat {
-  [self.tableView beginUpdates];
-  NSInteger index = [self.chats indexOfObject:chat];
-  [self.chats replaceObjectAtIndex:index withObject:chat];
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-  [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-  [self.tableView endUpdates];
+
 }
 
 - (void)apiService:(FCAPIService *)apiService didMoveChat:(FCChat *)chat {
-  [self.tableView beginUpdates];
-  NSInteger index = [self.chats indexOfObject:chat];
-  [self.chats removeObjectAtIndex:index];
-  [self.chats insertObject:chat atIndex:0];
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-  NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-  [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
-  [self.tableView endUpdates];
+  
 }
 
 - (void)apiService:(FCAPIService *)apiService didRemoveChat:(FCChat *)chat {
-  [self.tableView beginUpdates];
-  NSInteger index = [self.chats indexOfObject:chat];
-  [self.chats removeObject:chat];
-  [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-  [self.tableView endUpdates];
+  
 }
 
 #pragma mark - FCAddChatViewControllerDelegate

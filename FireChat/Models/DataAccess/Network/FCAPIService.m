@@ -99,22 +99,6 @@
 
 - (void)getChatFromSnapshot:(FIRDataSnapshot *)chatSnapshot
                     success:(void(^)(FCChat *chat))succes {
-  
-  if (chatSnapshot.value != [NSNull null]) {
-    NSMutableDictionary *chatMutableDictionary = [chatSnapshot.value mutableCopy];
-    chatMutableDictionary[@"uid"] = chatSnapshot.key;
-    FIRDatabaseReference *userDatabaseReference = [self.userDatabaseReference child:chatSnapshot.value[@"recipientID"]];
-    [userDatabaseReference observeSingleEventOfType:FIRDataEventTypeValue
-                                          withBlock:^(FIRDataSnapshot * _Nonnull userSnapshot) {
-                                            if (userSnapshot.value != [NSNull null]) {
-                                              NSMutableDictionary *userMutableDictionary = [userSnapshot.value mutableCopy];
-                                              userMutableDictionary[@"uid"] = userSnapshot.key;
-                                              chatMutableDictionary[@"recipient"] = userMutableDictionary;
-                                              FCChat *chat = [[FCChat alloc] initWithDictionary:chatMutableDictionary];
-                                              succes(chat);
-                                            }
-                                          }];
-  }
 }
 
 - (void)removeChat:(FCChat *)chat {
