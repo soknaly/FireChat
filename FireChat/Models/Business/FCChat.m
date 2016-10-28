@@ -12,16 +12,11 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
   if (self = [super initWithDictionary:dictionary]) {
-    _fullName = dictionary[@"name"];
-    _profileImageUrl = dictionary[@"profileImageUrl"];
-    _online = [dictionary[@"online"] boolValue];
     _lastMessage = dictionary[@"lastMessage"];
+    FCUser *recipient = [[FCUser alloc] initWithDictionary:dictionary[@"recipient"]];
+    _recipient = recipient;
   }
   return self;
-}
-
-- (NSURL *)profileImageURL {
-  return [NSURL URLWithString:self.profileImageUrl];
 }
 
 @end

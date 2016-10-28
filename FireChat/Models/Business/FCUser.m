@@ -15,15 +15,13 @@
 {
   self = [super initWithDictionary:dictionary];
   if (self) {
-    NSString *userID = [dictionary allKeys].firstObject;
-    NSDictionary *userDictionary = dictionary[userID];
-    _displayName = userDictionary[@"displayName"];
-    _emailAddress = userDictionary[@"email"];
-    NSString *photoURLString = userDictionary[@"photoURL"];
+    _displayName = dictionary[@"displayName"];
+    _emailAddress = dictionary[@"email"];
+    NSString *photoURLString = dictionary[@"photoURL"];
     if (photoURLString) {
      _photoURL = [NSURL URLWithString:photoURLString];
     }
-    _uid = userID;
+    _uid = dictionary[@"uid"];
     
   }
   return self;

@@ -35,9 +35,9 @@
 }
 
 - (void)populateWithContact:(FCChat *)contact {
-  [self.profileImageView sd_setImageWithURL:[contact profileImageURL]
+  [self.profileImageView sd_setImageWithURL:[contact.recipient photoURL]
                            placeholderImage:[UIImage profilePlaceholderImage]];
-  self.nameLabel.text = contact.fullName;
+  self.nameLabel.text = contact.recipient.displayName;
 }
 
 

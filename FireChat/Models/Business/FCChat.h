@@ -7,20 +7,14 @@
 //
 
 #import "FCObject.h"
+#import "FCUser.h"
 
 @interface FCChat : FCObject
 
-@property (nonatomic, strong) NSString *chatId;
-
-@property (nonatomic, strong) NSString *fullName;
-
-@property (nonatomic, strong) NSString *profileImageUrl;
+@property (nonatomic, strong) NSString *uid;
 
 @property (nonatomic, strong) NSString *lastMessage;
 
-@property (nonatomic, getter=isOnline) BOOL online;
-
-
-- (NSURL* )profileImageURL;
+@property (nonatomic, strong) FCUser *recipient;
 
 @end

@@ -37,17 +37,17 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
   if (self.chat) {
-    self.onlineView.backgroundColor = self.chat.isOnline ? [UIColor greenColor] : [UIColor lightGrayColor];
+//    self.onlineView.backgroundColor = self.chat.isOnline ? [UIColor greenColor] : [UIColor lightGrayColor];
   }
 }
 
 - (void)populateWithChat:(FCChat *)chat {
   self.chat = chat;
-  [self.profileImageView sd_setImageWithURL:[chat profileImageURL]
+  [self.profileImageView sd_setImageWithURL:chat.recipient.photoURL
                            placeholderImage:[UIImage profilePlaceholderImage]];
-  self.nameLabel.text = chat.fullName;
+  self.nameLabel.text = chat.recipient.displayName;
   self.lastMessageLabel.text = chat.lastMessage;
-  self.onlineView.backgroundColor = self.chat.isOnline ? [UIColor greenColor] : [UIColor lightGrayColor];
+//  self.onlineView.backgroundColor = self.chat.isOnline ? [UIColor greenColor] : [UIColor lightGrayColor];
 }
 
 @end

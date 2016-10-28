@@ -8,6 +8,17 @@
 
 #import "FCBaseViewController.h"
 
+@class FCAddChatViewController;
+
+@protocol FCAddChatViewControllerDelegate <NSObject>
+
+- (void)addChatViewController:(FCAddChatViewController *)chatViewController
+                   didAddChat:(FCChat *)chat;
+
+@end
+
 @interface FCAddChatViewController : FCBaseViewController
+
+@property (nonatomic, weak) id<FCAddChatViewControllerDelegate> delegate;
 
 @end

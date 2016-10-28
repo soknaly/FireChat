@@ -8,17 +8,20 @@
 
 #import "FCChatViewController.h"
 #import "FCMessagesViewController.h"
+#import "FCAddChatViewController.h"
 
 #import "FCChatTableViewCell.h"
 #import "FCChat.h"
 
 @interface FCChatViewController () <
 UITableViewDelegate,
-UITableViewDataSource
+UITableViewDataSource,
+FCAPIServiceDelegate,
+FCAddChatViewControllerDelegate
 >
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray<FCChat* > *chats;
+@property (nonatomic, strong) NSMutableArray<FCChat* > *chats;
 
 @end
 
@@ -29,6 +32,7 @@ UITableViewDataSource
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self setupView];
+  [self setupData];
 }
 
 - (void)setupMockData {
@@ -60,11 +64,16 @@ UITableViewDataSource
   self.chats = mutableChat;
 }
 
+- (void)setupData {
+  self.chats = [NSMutableArray array];
+  [[FCAPIService sharedServiced] getChatListForCurrentUserWithDelegate:self];
+}
+
 #pragma mark - Views
 
 - (void)setupView {
   [self setupTableView];
-  [self setupMockData];
+//  [self setupMockData];
 }
 
 - (void)setupTableView {
@@ -76,8 +85,15 @@ UITableViewDataSource
 #pragma mark - Actions
 
 
+- (IBAction)addChatButtonAction:(id)sender {
+  FCAddChatViewController *addChatViewController = [FCAddChatViewController viewControllerFromStoryboard];
+  addChatViewController.delegate = self;
+  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:addChatViewController];
+  navigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+  [self presentViewController:navigationController animated:YES completion:nil];
+}
 
-#pragma mark - UITableView
+#pragma mark - UITableViewDatasource & Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return self.chats.count;
@@ -96,6 +112,26 @@ UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   FCMessagesViewController *messagesViewController = [FCMessagesViewController viewControllerFromStoryboard];
   messagesViewController.chat = self.chats[indexPath.row];
+  messagesViewController.hidesBottomBarWhenPushed = YES;
+  [self.navigationController pushViewController:messagesViewController animated:YES];
+}
+
+#pragma mark - FCAPIServiceDelegate
+
+- (void)apiService:(FCAPIService *)apiService didAddChat:(FCChat *)chat {
+  [self.tableView beginUpdates];
+  [self.chats addObject:chat];
+  NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:self.chats.count > 1 ?  : self.chats.count - 1 inSection:0];
+  [self.tableView insertRowsAtIndexPaths:@[lastIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self.tableView endUpdates];
+}
+
+#pragma mark - FCAddChatViewControllerDelegate
+
+- (void)addChatViewController:(FCAddChatViewController *)chatViewController didAddChat:(FCChat *)chat {
+  [chatViewController dismissViewControllerAnimated:YES completion:nil];
+  FCMessagesViewController *messagesViewController = [FCMessagesViewController viewControllerFromStoryboard];
+  messagesViewController.chat = chat;
   messagesViewController.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:messagesViewController animated:YES];
 }

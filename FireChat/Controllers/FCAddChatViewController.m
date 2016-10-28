@@ -28,6 +28,8 @@ UITextFieldDelegate
 
 @property (nonatomic, weak) IBOutlet UILabel *notFoundLabel;
 
+@property (nonatomic, strong) FCUser *user;
+
 @end
 
 @implementation FCAddChatViewController
@@ -45,6 +47,7 @@ UITextFieldDelegate
 #pragma mark - Views
 
 - (void)populateProfileViewWithUser:(FCUser *)user {
+  self.user = user;
   BOOL shouldHide = user == nil;
   self.profileContainerView.hidden = shouldHide;
   self.notFoundLabel.hidden = !shouldHide;
@@ -78,6 +81,9 @@ UITextFieldDelegate
 }
 
 - (IBAction)addChatButtonAction:(id)sender {
+  [[FCAPIService sharedServiced] addChatWithUser:self.user success:^(FCChat *chat) {
+    [self.delegate addChatViewController:self didAddChat:chat];
+  }];
 }
 #pragma mark - UITextFieldDelegate
 

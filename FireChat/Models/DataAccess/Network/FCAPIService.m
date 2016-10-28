@@ -14,6 +14,10 @@
 
 @property (nonatomic, strong) FIRDatabaseReference *userDatabaseReference;
 
+@property (nonatomic, strong) FIRDatabaseReference *chatDatabaseReference;
+
+@property (nonatomic, strong) FIRDatabaseReference *memberDatabaseReference;
+
 @end
 
 @implementation FCAPIService
@@ -34,6 +38,8 @@
     self.imageStorageReference = [storageReference child:@"images"];
     FIRDatabaseReference *databaseReference = [[FIRDatabase database] reference];
     self.userDatabaseReference = [databaseReference child:@"users"];
+    self.chatDatabaseReference = [databaseReference child:@"chats"];
+    self.memberDatabaseReference = [databaseReference child:@"members"];
   }
   return self;
 }
@@ -55,7 +61,7 @@
            withName:(NSString *)imageName
            progress:(void (^)(NSProgress *))progress
             success:(void (^)(NSURL *))success
-            failure:(void (^)(NSError *))failure {
+            failure:(FCErrorResultBlock)failure {
   if (!image) {
     success(nil);
     return;
@@ -85,13 +91,16 @@
 
 - (void)searchUserWithEmail:(NSString *)email
                     success:(void (^)(FCUser *))success
-                    failure:(void (^)(NSError *))failure {
+                    failure:(FCErrorResultBlock)failure {
   
   FIRDatabaseQuery *emailQuery = [[self.userDatabaseReference queryOrderedByChild:@"email"] queryEqualToValue:email];
   [emailQuery observeSingleEventOfType:FIRDataEventTypeValue
-                             withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                               if (snapshot.exists) {
-                                 FCUser *user = [[FCUser alloc] initWithDictionary:snapshot.value];
+                             withBlock:^(FIRDataSnapshot * _Nonnull userSnapshot) {
+                               if (userSnapshot.exists) {
+                                 NSString *uid = [userSnapshot.value allKeys].firstObject;
+                                 NSMutableDictionary *userMutableDictionary = userSnapshot.value[uid];
+                                 userMutableDictionary[@"uid"] = uid;
+                                 FCUser *user = [[FCUser alloc] initWithDictionary:userMutableDictionary];
                                  success(user);
                                } else {
                                  success(nil);
@@ -100,6 +109,69 @@
                        withCancelBlock:^(NSError * _Nonnull error) {
                          failure(error);
                        }];
+}
+
+- (void)addChatWithUser:(FCUser *)user
+                success:(void (^)(FCChat *))success {
+  
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  
+  NSTimeInterval nowInterval = [NSDate timeIntervalSinceReferenceDate];
+  
+  FIRDatabaseReference *currentUserChatDatabaseReference = [[self.chatDatabaseReference child:currentUser.uid] child:user.uid];
+  
+  FIRDatabaseReference *recipientChatDatabaseReference = [[self.chatDatabaseReference child:user.uid] child:currentUser.uid];
+  
+  
+  NSDictionary *currentUserDictionary = @{@"timestamp":@(nowInterval)};
+  
+  NSDictionary *recipientUserDictionary = @{@"timestamp":@(nowInterval)};
+  
+  [currentUserChatDatabaseReference setValue:currentUserDictionary];
+  [recipientChatDatabaseReference setValue:recipientUserDictionary];
+  
+  FIRDatabaseReference *currentUserChatRef = [[self.userDatabaseReference child:currentUser.uid] child:@"chats"];
+  
+  FIRDatabaseReference *recipientChatRef = [[self.userDatabaseReference child:user.uid] child:@"chats"];
+  
+  [[currentUserChatRef child:currentUserChatDatabaseReference.key] setValue:@YES];
+  [[recipientChatRef child:currentUserChatDatabaseReference.key] setValue:@YES];
+  [currentUserChatDatabaseReference setValue:currentUserDictionary];
+  
+  FCChat *chat = [[FCChat alloc] init];
+  FCUser *recipient = [[FCUser alloc] init];
+  recipient.displayName = currentUser.displayName;
+  recipient.photoURL = currentUser.photoURL;
+  chat.recipient = recipient;
+  success(chat);
+  
+}
+
+- (void)getChatListForCurrentUserWithDelegate:(id<FCAPIServiceDelegate>)delegate {
+  self.delegate = delegate;
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  FIRDatabaseQuery *currentUserChatDatabaseReference = [[self.chatDatabaseReference child:currentUser.uid] queryOrderedByChild:@"timestamp"];
+  [currentUserChatDatabaseReference observeEventType:FIRDataEventTypeChildAdded
+                                           withBlock:^(FIRDataSnapshot * _Nonnull chatSnapshot) {
+                                             if (chatSnapshot.value != [NSNull null]) {
+                                               NSMutableDictionary *chatMutableDictionary = [chatSnapshot.value mutableCopy];
+                                               chatMutableDictionary[@"uid"] = chatSnapshot.key;
+                                               FIRDatabaseReference *userDatabaseReference = [self.userDatabaseReference child:chatSnapshot.key];
+                                               [userDatabaseReference observeSingleEventOfType:FIRDataEventTypeValue
+                                                                                     withBlock:^(FIRDataSnapshot * _Nonnull userSnapshot) {
+                                                                                       if (userSnapshot.value != [NSNull null]) {
+                                                                                         NSMutableDictionary *userMutableDictionary = [userSnapshot.value mutableCopy];
+                                                                                         userMutableDictionary[@"uid"] = userSnapshot.key;
+                                                                                         chatMutableDictionary[@"recipient"] = userMutableDictionary;
+                                                                                         FCChat *chat = [[FCChat alloc] initWithDictionary:chatMutableDictionary];
+                                                                                         if ([self.delegate respondsToSelector:@selector(apiService:didAddChat:)]) {
+                                                                                           [self.delegate apiService:self didAddChat:chat];
+                                                                                         }
+                                                                                       }
+                                                                                     }];
+                                             }
+                                             
+                                           }];
 }
 
 @end

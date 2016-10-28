@@ -36,7 +36,7 @@ UINavigationControllerDelegate
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.title = self.chat.fullName;
+  self.title = self.chat.recipient.displayName;
   self.senderId = kJSQDemoAvatarIdSokna;
   self.images = @{kJSQDemoAvatarIdDuke:@"https://scontent-hkg3-1.xx.fbcdn.net/v/t1.0-9/14485073_10208554229386265_902072082399694097_n.jpg?oh=2b3d043938c47b7edf48a602147fbd0d&oe=589FB5A9",
                   kJSQDemoAvatarIdSokna:@"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/5/005/088/08a/0b388f2.jpg"};
