@@ -88,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Png-zX-ztJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="876"/>
+            <point key="canvasLocation" x="2603" y="876"/>
         </scene>
         <!--Chats-->
         <scene sceneID="wST-zp-Oe9">
@@ -382,10 +382,18 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fWY-Yq-kie">
                                         <rect key="frame" x="279" y="157" width="20" height="20"/>
                                     </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHc-tx-6Ul">
+                                        <rect key="frame" x="184" y="108" width="123" height="30"/>
+                                        <state key="normal" title="Forgot password?"/>
+                                        <connections>
+                                            <segue destination="Zr8-qs-j34" kind="presentation" modalTransitionStyle="crossDissolve" id="eSZ-j8-bdB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="192" id="03q-aq-Fn5"/>
+                                    <constraint firstItem="wnL-uy-Pno" firstAttribute="top" secondItem="cHc-tx-6Ul" secondAttribute="bottom" constant="4" id="4Gt-9q-z3C"/>
                                     <constraint firstAttribute="trailing" secondItem="wnL-uy-Pno" secondAttribute="trailing" id="5da-bB-YeS"/>
                                     <constraint firstAttribute="trailing" secondItem="HdW-06-U65" secondAttribute="trailing" id="9JM-Qg-3L5"/>
                                     <constraint firstItem="1tK-s3-uOf" firstAttribute="top" secondItem="HdW-06-U65" secondAttribute="bottom" constant="8" id="L4a-Ov-zU3"/>
@@ -397,6 +405,7 @@
                                     <constraint firstItem="1tK-s3-uOf" firstAttribute="leading" secondItem="1WF-Qm-Rt5" secondAttribute="leading" id="sFI-no-FD9"/>
                                     <constraint firstItem="HdW-06-U65" firstAttribute="leading" secondItem="1WF-Qm-Rt5" secondAttribute="leading" id="tyI-1Y-w4i"/>
                                     <constraint firstItem="wnL-uy-Pno" firstAttribute="leading" secondItem="1WF-Qm-Rt5" secondAttribute="leading" id="vag-6t-nnd"/>
+                                    <constraint firstAttribute="trailing" secondItem="cHc-tx-6Ul" secondAttribute="trailing" constant="8" id="zdd-4r-h78"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W96-vC-JpA">
@@ -729,6 +738,69 @@
             </objects>
             <point key="canvasLocation" x="159" y="386"/>
         </scene>
+        <!--Reset Password-->
+        <scene sceneID="rvf-cw-Fxv">
+            <objects>
+                <tableViewController id="V1x-Y4-K1K" customClass="FCForgotPasswordTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="0V1-Lz-Al8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="Bt0-kO-5iF">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="kfD-bw-tH5">
+                                        <rect key="frame" x="0.0" y="99" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfD-bw-tH5" id="zoU-Rr-v9T">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OdW-mA-rmo" customClass="FCTextField">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="49"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hasBottomLine" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="OdW-mA-rmo" secondAttribute="bottom" id="87I-Za-5hA"/>
+                                                <constraint firstItem="OdW-mA-rmo" firstAttribute="leading" secondItem="zoU-Rr-v9T" secondAttribute="leading" constant="16" id="Cr2-qs-ucd"/>
+                                                <constraint firstAttribute="trailing" secondItem="OdW-mA-rmo" secondAttribute="trailing" constant="16" id="Lk7-hv-bTd"/>
+                                                <constraint firstItem="OdW-mA-rmo" firstAttribute="top" secondItem="zoU-Rr-v9T" secondAttribute="top" id="sIN-DX-kzn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="V1x-Y4-K1K" id="kth-Y1-yV9"/>
+                            <outlet property="delegate" destination="V1x-Y4-K1K" id="lht-Ha-SUN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reset Password" id="7QL-6X-HCf">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="cNL-qy-BWs">
+                            <connections>
+                                <action selector="dismissButtonAction:" destination="V1x-Y4-K1K" id="j5Y-z6-har"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="qDs-tq-UTX">
+                            <connections>
+                                <action selector="resetButtonAction:" destination="V1x-Y4-K1K" id="QGU-Zp-sUI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="OdW-mA-rmo" id="61z-8T-RLx"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VCN-9y-Ajy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="689" y="1167"/>
+        </scene>
         <!--Chats-->
         <scene sceneID="J8z-hQ-5Ds">
             <objects>
@@ -765,7 +837,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0x-Ib-via" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="979" y="716"/>
+            <point key="canvasLocation" x="1791" y="716"/>
         </scene>
         <!--Settings-->
         <scene sceneID="5Rv-AB-vnU">
@@ -879,7 +951,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Q3-Kb-wZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="1714"/>
+            <point key="canvasLocation" x="2611" y="1714"/>
         </scene>
         <!--Edit Profile Table View Controller-->
         <scene sceneID="ail-gW-3lb">
@@ -1001,7 +1073,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80X-3o-BLs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2485" y="1424"/>
+            <point key="canvasLocation" x="3297" y="1424"/>
         </scene>
         <!--Change Password Table View Controller-->
         <scene sceneID="Gfa-W4-ige">
@@ -1113,7 +1185,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLu-R6-ilM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="973" y="1480"/>
+            <point key="canvasLocation" x="1785" y="1480"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="562-Ov-8mm">
@@ -1213,7 +1285,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXr-cz-nEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3827" y="570"/>
+            <point key="canvasLocation" x="4639" y="570"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vWw-WF-3oy">
@@ -1231,7 +1303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OBn-mN-DsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3015" y="570"/>
+            <point key="canvasLocation" x="3827" y="570"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uYN-ct-97s">
@@ -1250,6 +1322,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xe1-75-8Y5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-162" y="-504"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xqq-BI-quz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zr8-qs-j34" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ldr-qx-uAr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="V1x-Y4-K1K" kind="relationship" relationship="rootViewController" id="aHo-ti-yxj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07W-JZ-Vva" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-123" y="1167"/>
         </scene>
     </scenes>
     <resources>
