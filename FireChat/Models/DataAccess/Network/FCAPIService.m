@@ -115,38 +115,7 @@
                     isMedia:(BOOL)isMedia
                     forChat:(FCChat *)chat {
   
-  FIRUser *currentUser = [FIRAuth auth].currentUser;
-  
-  NSString *lastMessage = text;
-  if (isMedia) {
-    lastMessage = @"Sent a photo";
-  }
-  FIRDatabaseReference *messagesDatabaseReference = [[self.messagesDatabaseReference child:chat.uid] childByAutoId];
-  
-  //Update Current User Chat
-  FIRDatabaseReference *currentUserChatDatabaseReference = [[self.chatDatabaseReference child:currentUser.uid] child:chat.uid];
-  [[currentUserChatDatabaseReference child:@"lastMessage"] setValue:lastMessage];
-  [[currentUserChatDatabaseReference child:@"timestamp"] setValue:@(-[date timeIntervalSinceReferenceDate])];
-  [[currentUserChatDatabaseReference child:@"lastSenderID"] setValue:currentUser.uid];
-  
-  //Update Recipient Chat
-  
-  FIRDatabaseReference *recipientChatDatabaseReference = [[self.chatDatabaseReference child:chat.recipient.uid] child:chat.uid];
-  [[recipientChatDatabaseReference child:@"lastMessage"] setValue:lastMessage];
-  [[recipientChatDatabaseReference child:@"timestamp"] setValue:@(-[date timeIntervalSinceReferenceDate])];
-  [[recipientChatDatabaseReference child:@"lastSenderID"] setValue:currentUser.uid];
-  
-  
-  //Set Message Data
-  NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary];
-  messageDictionary[@"message"] = text;
-  messageDictionary[@"senderID"] = senderID;
-  messageDictionary[@"timestamp"] = @([date timeIntervalSinceReferenceDate]);
-  if (isMedia) {
-    messageDictionary[@"isMedia"] = @(isMedia);
-  }
-  
-  [messagesDatabaseReference setValue:messageDictionary];
+  //TODO: Write Firebase code to send message
 }
 
 - (void)observeTypingStatusForChat:(FCChat *)chat
