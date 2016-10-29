@@ -21,7 +21,7 @@ or
 - Using git 
 
 ```bash
-git clone -b stater https://github.com/soknaly/FireChat.git
+git clone -b starter https://github.com/soknaly/FireChat.git
 ```
 - After you have project in your computer, you can learn more about Firebase [here](https://firebase.google.com/docs/ios/setup)
 
