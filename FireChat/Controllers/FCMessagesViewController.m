@@ -163,8 +163,27 @@ UINavigationControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+  UIImage *image = info[UIImagePickerControllerEditedImage];
   [picker dismissViewControllerAnimated:YES completion:nil];
-  //TODO: Call upload image and sending message
+  [[FCAPIService sharedServiced] uploadImage:image
+                                    withName:[NSString stringWithFormat:@"%f",round([NSDate timeIntervalSinceReferenceDate])]
+                                    progress:^(NSProgress *progress) {
+                                      [FCProgressHUD showProgress:progress.fractionCompleted status:@"Uploading Image"];
+                                    }
+                                     success:^(NSURL *imageURL) {
+                                       [FCProgressHUD dismiss];
+                                       NSDate *nowDate = [NSDate date];
+                                       [[FCAPIService sharedServiced] sendMessageWithText:imageURL.absoluteString
+                                                                                 senderID:self.senderId
+                                                                                     date:nowDate
+                                                                                  isMedia:YES
+                                                                                  forChat:self.chat];
+                                       [self finishSendingMessage];
+                                       
+                                     }
+                                     failure:^(NSError *error) {
+                                       
+                                     }];
 }
 
 #pragma mark - JSQInputToolbarDelegate
@@ -174,7 +193,12 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
                   senderId:(NSString *)senderId
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date {
-  //TODO: Call sending message
+  
+  [[FCAPIService sharedServiced] sendMessageWithText:text
+                                            senderID:senderId
+                                                date:date
+                                             isMedia:NO
+                                             forChat:self.chat];
   [self finishSendingMessageAnimated:YES];
 }
 
