@@ -11,6 +11,14 @@ FireChat is an iOS Chat App work with Firebase. The purpose of creating this app
 - Edit Profile
 - Change password
 
+##Screenshots
+
+<img src="https://github.com/soknaly/FireChat/blob/master/Screenshots/screenshot_1.PNG" width="250" height="445"/>
+<img src="https://github.com/soknaly/FireChat/blob/master/Screenshots/screenshot_2.PNG" width="250" height="445"/>
+<img src="https://github.com/soknaly/FireChat/blob/master/Screenshots/screenshot_3.PNG" width="250" height="445"/>
+<img src="https://github.com/soknaly/FireChat/blob/master/Screenshots/screenshot_4.PNG" width="250" height="445"/>
+<img src="https://github.com/soknaly/FireChat/blob/master/Screenshots/screenshot_5.PNG" width="250" height="445"/>
+
 ##Get Started
 Before get started, please download this UI-Only Project into your computer with following ways:
 
