@@ -152,7 +152,12 @@
 - (void)observeTypingStatusForChat:(FCChat *)chat
                        actionBlock:(void (^)(BOOL))actionBlock {
   
-  //TODO: Write firebase code to observe typing status
+  FIRDatabaseReference *typingRef = [[self.typingDatabaseReference child:chat.uid] child:chat.recipient.uid];
+  [typingRef observeEventType:FIRDataEventTypeValue
+                    withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                      actionBlock(snapshot.value != [NSNull null] &&
+                                  [snapshot.value boolValue]);
+                    }];
   
 }
 
@@ -172,11 +177,18 @@
 }
 
 - (void)sendTypingStatusForChat:(FCChat *)chat {
-  //TODO: Write Firebase code to send typing status
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  if (!currentUser) return;
+  FIRDatabaseReference *currentUserTypingRef = [[self.typingDatabaseReference child:chat.uid] child:currentUser.uid];
+  [currentUserTypingRef setValue:@YES];
+  [currentUserTypingRef onDisconnectRemoveValue];
 }
 
 - (void)sendStopTypingStatusForChat:(FCChat *)chat {
- //TODO: Write Firebase code to send stop typing status
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  if (!currentUser) return;
+  FIRDatabaseReference *currentUserTypingRef = [[self.typingDatabaseReference child:chat.uid] child:currentUser.uid];
+  [currentUserTypingRef setValue:@NO];
 }
 
 
