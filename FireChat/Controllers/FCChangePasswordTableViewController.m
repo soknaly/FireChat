@@ -61,7 +61,23 @@
 
 - (void)saveBarButtonItemHandler:(id)sender {
   [self validateChangePassword:^{
-    //TODO: Call Firebase API to change password 
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    [FCProgressHUD show];
+    [currentUser updatePassword:self.passwordTextField.text completion:^(NSError * _Nullable error) {
+      [FCProgressHUD dismiss];
+      if (error) {
+        [FCAlertController showErrorWithTitle:@"Change Password Failed"
+                                      message:error.localizedDescription
+                             inViewController:self];
+      } else {
+        [FCAlertController showErrorWithTitle:@"Change Password Succeeded"
+                                      message:@"Your password has been changed successfully."
+                             inViewController:self handlerBlock:^{
+                               [self.navigationController popViewControllerAnimated:YES];
+                             }];
+      }
+    }];
+
   }];
 }
 
