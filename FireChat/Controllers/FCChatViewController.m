@@ -87,7 +87,8 @@ FCAddChatViewControllerDelegate
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 forRowAtIndexPath:(NSIndexPath *)indexPath {
-
+  FCChat *chat = self.chats[indexPath.row];
+  [[FCAPIService sharedServiced] removeChat:chat];
 }
 
 #pragma mark - FCAPIServiceDelegate

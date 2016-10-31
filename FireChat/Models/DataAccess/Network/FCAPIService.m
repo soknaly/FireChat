@@ -102,7 +102,11 @@
 }
 
 - (void)removeChat:(FCChat *)chat {
-  
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  FIRDatabaseReference *chatRef = [self.chatDatabaseReference child:currentUser.uid];
+  FIRDatabaseReference *recipientChatRef = [self.chatDatabaseReference child:chat.recipient.uid];
+  [[chatRef child:chat.uid] removeValue];
+  [[recipientChatRef child:chat.uid] removeValue];
 }
 
 - (void)sendMessageWithText:(NSString *)text
