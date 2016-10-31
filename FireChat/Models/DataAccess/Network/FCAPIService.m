@@ -54,7 +54,12 @@
              displayName:(NSString *)displayName
             emailAddress:(NSString *)emailAddress
                 photoURL:(NSURL *)photoURL {
-  //TODO: Write Firebase code to save user info
+  FIRDatabaseReference *userReference = [self.userDatabaseReference child:userID];
+  [[userReference child:@"displayName"] setValue:displayName];
+  [[userReference child:@"email"] setValue:emailAddress];
+  if (photoURL) {
+    [[userReference child:@"photoURL"] setValue:photoURL.absoluteString];
+  }
 }
 
 - (void)updateCurrentUserWithFirstName:(NSString *)firstName
