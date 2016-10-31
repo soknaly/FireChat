@@ -92,28 +92,159 @@
            progress:(void (^)(NSProgress *))progress
             success:(void (^)(NSURL *))success
             failure:(FCErrorResultBlock)failure {
-  //TODO: Write Firebase code to upload image to Firebase Storage
+  if (!image) {
+    success(nil);
+    return;
+  }
+  FIRStorageReference *photoStorageReference = [self.imageStorageReference child:imageName];
+  
+  FIRStorageMetadata *metadata = [[FIRStorageMetadata alloc] init];
+  metadata.contentType = @"image/jpeg";
+  
+  FIRStorageUploadTask *uploadTask = [photoStorageReference putData:UIImageJPEGRepresentation(image, 1)
+                                                           metadata:metadata
+                                                         completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+                                                           if (error) {
+                                                             failure(error);
+                                                           } else {
+                                                             success(metadata.downloadURL);
+                                                           }
+                                                         }];
+  if (progress) {
+    [uploadTask observeStatus:FIRStorageTaskStatusProgress
+                      handler:^(FIRStorageTaskSnapshot * _Nonnull snapshot) {
+                        progress(snapshot.progress);
+                      }];
+  }
+  
 }
 
 - (void)searchUserWithEmail:(NSString *)email
                     success:(void (^)(FCUser *))success
                     failure:(FCErrorResultBlock)failure {
-  
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  if ([email isEqualToString:currentUser.email]) {
+    success(nil);
+    return;
+  }
+  FIRDatabaseQuery *emailQuery = [[self.userDatabaseReference queryOrderedByChild:@"email"] queryEqualToValue:email];
+  [emailQuery observeSingleEventOfType:FIRDataEventTypeValue
+                             withBlock:^(FIRDataSnapshot * _Nonnull userSnapshot) {
+                               if (userSnapshot.exists) {
+                                 NSString *uid = [userSnapshot.value allKeys].firstObject;
+                                 NSMutableDictionary *userMutableDictionary = userSnapshot.value[uid];
+                                 userMutableDictionary[@"uid"] = uid;
+                                 FCUser *user = [[FCUser alloc] initWithDictionary:userMutableDictionary];
+                                 success(user);
+                               } else {
+                                 success(nil);
+                               }
+                             }
+                       withCancelBlock:^(NSError * _Nonnull error) {
+                         failure(error);
+                       }];
 }
 
 - (void)checkExistingChatWithRecipientID:(NSString *)recipientID
                                  success:(void(^)(BOOL exists))success {
-  
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  FIRDatabaseQuery *chatQuery = [[[self.chatDatabaseReference child:currentUser.uid] queryOrderedByChild:@"recipientID"] queryEqualToValue:recipientID];
+  [chatQuery observeSingleEventOfType:FIRDataEventTypeValue
+                            withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                              success(snapshot.exists);
+                            }];
 }
 
 - (void)addChatWithUser:(FCUser *)user
                 success:(void (^)(FCChat *))success
                 failure:(FCErrorResultBlock)failure {
   
+  [self checkExistingChatWithRecipientID:user.uid success:^(BOOL exists) {
+    if (!exists) {
+      FIRUser *currentUser = [FIRAuth auth].currentUser;
+      
+      NSTimeInterval nowInterval = [NSDate timeIntervalSinceReferenceDate];
+      
+      FIRDatabaseReference *currentUserChatDatabaseReference = [[self.chatDatabaseReference child:currentUser.uid] childByAutoId];
+      
+      FIRDatabaseReference *recipientChatDatabaseReference = [[self.chatDatabaseReference child:user.uid] child:currentUserChatDatabaseReference.key];
+      
+      
+      NSDictionary *currentUserDictionary = @{@"timestamp":@(-nowInterval),
+                                              @"recipientID":user.uid};
+      
+      NSDictionary *recipientUserDictionary = @{@"timestamp":@(-nowInterval),
+                                                @"recipientID":currentUser.uid};
+      
+      [currentUserChatDatabaseReference setValue:currentUserDictionary];
+      [recipientChatDatabaseReference setValue:recipientUserDictionary];
+      
+      FIRDatabaseReference *currentUserChatRef = [[self.userDatabaseReference child:currentUser.uid] child:@"chats"];
+      [[currentUserChatRef child:currentUserChatDatabaseReference.key] setValue:@YES];
+      
+      FIRDatabaseReference *recipientChatRef = [[self.userDatabaseReference child:user.uid] child:@"chats"];
+      [[recipientChatRef child:currentUserChatDatabaseReference.key] setValue:@YES];
+      
+      [currentUserChatDatabaseReference setValue:currentUserDictionary];
+      
+      FCChat *chat = [[FCChat alloc] init];
+      FCUser *recipient = [[FCUser alloc] init];
+      recipient.displayName = currentUser.displayName;
+      recipient.photoURL = currentUser.photoURL;
+      recipient.uid = currentUser.uid;
+      chat.recipient = recipient;
+      chat.uid = currentUserChatDatabaseReference.key;
+      success(chat);
+    } else {
+      NSError *error = [NSError errorWithDomain:@"kFCErrorDomain"
+                                           code:409
+                                       userInfo:@{NSLocalizedDescriptionKey:@"You already has a chat with this user"}];
+      failure(error);
+    }
+  }];
   
 }
 
 - (void)getChatListForCurrentUserWithDelegate:(id<FCAPIServiceDelegate>)delegate {
+  self.delegate = delegate;
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  
+  FIRDatabaseQuery *currentUserChatDatabaseReference = [[self.chatDatabaseReference child:currentUser.uid] queryOrderedByChild:@"timestamp"];
+  [currentUserChatDatabaseReference observeEventType:FIRDataEventTypeChildAdded
+                                           withBlock:^(FIRDataSnapshot * _Nonnull chatSnapshot) {
+                                             [self getChatFromSnapshot:chatSnapshot success:^(FCChat *chat) {
+                                               if ([self.delegate respondsToSelector:@selector(apiService:didAddChat:)]) {
+                                                 [self.delegate apiService:self didAddChat:chat];
+                                               }
+                                             }];
+                                           }];
+  
+  [currentUserChatDatabaseReference observeEventType:FIRDataEventTypeChildChanged
+                                           withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                             [self getChatFromSnapshot:snapshot success:^(FCChat *chat) {
+                                               if ([self.delegate respondsToSelector:@selector(apiService:didUpdateChat:)]) {
+                                                 [self.delegate apiService:self didUpdateChat:chat];
+                                               }
+                                             }];
+                                           }];
+  
+  [currentUserChatDatabaseReference observeEventType:FIRDataEventTypeChildMoved
+                                           withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                             [self getChatFromSnapshot:snapshot success:^(FCChat *chat) {
+                                               if ([self.delegate respondsToSelector:@selector(apiService:didMoveChat:)]) {
+                                                 [self.delegate apiService:self didMoveChat:chat];
+                                               }
+                                             }];
+                                           }];
+  
+  [currentUserChatDatabaseReference observeEventType:FIRDataEventTypeChildRemoved
+                                           withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                                             [self getChatFromSnapshot:snapshot success:^(FCChat *chat) {
+                                               if ([self.delegate respondsToSelector:@selector(apiService:didRemoveChat:)]) {
+                                                 [self.delegate apiService:self didRemoveChat:chat];
+                                               }
+                                             }];
+                                           }];
   
 }
 
