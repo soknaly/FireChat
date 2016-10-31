@@ -157,11 +157,18 @@
 }
 
 - (void)sendOnlineStatus {
-  //TODO: Write Firebase code to send online status
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  if (!currentUser) return;
+  FIRDatabaseReference *currentUserDatabaseRef = [self.userDatabaseReference child:currentUser.uid];
+  [[currentUserDatabaseRef child:@"online"] setValue:@YES];
+  [[currentUserDatabaseRef child:@"online"] onDisconnectSetValue:@NO];
 }
 
 - (void)sendOfflineStatus {
-  //TODO: Write Firebase code to send offline status
+  FIRUser *currentUser = [FIRAuth auth].currentUser;
+  if (!currentUser) return;
+  FIRDatabaseReference *currentUserDatabaseRef = [self.userDatabaseReference child:currentUser.uid];
+  [[currentUserDatabaseRef child:@"online"] setValue:@NO];
 }
 
 - (void)sendTypingStatusForChat:(FCChat *)chat {

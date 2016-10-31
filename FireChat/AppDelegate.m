@@ -47,15 +47,15 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  //TODO: Call sending online status
+  [[FCAPIService sharedServiced] sendOnlineStatus];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-  //TODO: Call sending offline status
+  [[FCAPIService sharedServiced] sendOfflineStatus];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-  //TODO: Call sending online status
+  [[FCAPIService sharedServiced] sendOnlineStatus];
 }
 
 @end
