@@ -25,6 +25,9 @@ git clone -b starter https://github.com/soknaly/FireChat.git
 ```
 - After you have project in your computer, you can learn more about Firebase [here](https://firebase.google.com/docs/ios/setup)
 
+##Presentation File
+You can download and check presentation slide [here](https://drive.google.com/open?id=1goZB-wtC_48YUAsd614TmU8u-WunfDKeT1BmDhjtWLQ). 
+
 ##JSON Structure 
 ```
 
